@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Card
 {
-    interface ICardCloneable
+    public interface ICardCloneable
     {
+        public ICardCloneable Clone();
     }
 }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monopoly.Card
+namespace Monopoly.Player.Behaviour
 {
-    class Card
+    public interface INPCBehaviour
     {
+        public int RollDice();
     }
 }

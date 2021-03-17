@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Pawn
 {
-    class Material
+    public class Material
     {
+
     }
 }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Behaviour
 {
-    class CalmBehaviour
+    public class CalmBehaviour : INPCBehaviour
     {
+        public int RollDice()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

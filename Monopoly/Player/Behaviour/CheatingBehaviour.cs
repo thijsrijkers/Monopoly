@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Behaviour
 {
-    class CheatingBehaviour
+    public class CheatingBehaviour : INPCBehaviour
     {
+        public int RollDice()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Behaviour
 {
-    class HumanPlayer
+    public class HumanPlayer : PlayerObject
     {
     }
 }

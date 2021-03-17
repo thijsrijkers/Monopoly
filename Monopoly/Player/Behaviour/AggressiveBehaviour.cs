@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Behaviour
 {
-    class AggressiveBehaviour
+    public class AggressiveBehaviour : INPCBehaviour
     {
+        public int RollDice()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

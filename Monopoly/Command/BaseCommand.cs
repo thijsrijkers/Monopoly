@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monopoly.Player
+namespace Monopoly.Command
 {
-    class Player
+    public class BaseCommand
     {
+        public void Execute()
+        {
+
+        }
     }
 }

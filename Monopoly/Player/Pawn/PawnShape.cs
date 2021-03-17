@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Pawn
 {
-    class PawnShape
+    public enum PawnShape
     {
+        Horse,
+        Battleship,
+        Shoe,
+        Hat,
+        Dog,
+        BramShape
     }
 }
