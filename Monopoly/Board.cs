@@ -2,7 +2,7 @@
 
 namespace Monopoly
 {
-    class Program
+    class Board
     {
         static void Main(string[] args)
         {
