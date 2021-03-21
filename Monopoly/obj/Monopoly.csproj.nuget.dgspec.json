@@ -1,36 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "T:\\MonopolyDP\\Monopoly\\Monopoly.csproj": {}
+    "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj": {}
   },
   "projects": {
-    "T:\\MonopolyDP\\Monopoly\\Monopoly.csproj": {
+    "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "T:\\MonopolyDP\\Monopoly\\Monopoly.csproj",
+        "projectUniqueName": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj",
         "projectName": "Monopoly",
-        "projectPath": "T:\\MonopolyDP\\Monopoly\\Monopoly.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "T:\\MonopolyDP\\Monopoly\\obj\\",
+        "projectPath": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj",
+        "packagesPath": "C:\\Users\\Brum\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\ProgramData\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Brum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net50"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.emzi0767.com/api/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net50": {
             "projectReferences": {}
           }
         },
@@ -41,24 +41,11 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "net50": {}
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
         }
       }
     }
