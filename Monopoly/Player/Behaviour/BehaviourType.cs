@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Behaviour
 {
-    public class HumanPlayer : BehaviourType
+    public abstract class BehaviourType
     {
-        public override bool IsHuman()
-        {
-            return true;
-        }
+        public abstract bool IsHuman();
     }
 }

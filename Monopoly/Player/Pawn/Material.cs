@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Pawn
 {
-    public class Material
+    public abstract class Material
     {
+        private string materialName;
+        private int materialStrenght;
 
+        public abstract string GetMaterialName();
+
+        public abstract int GetMaterialStrenght();
     }
 }
