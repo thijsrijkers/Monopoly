@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Monopoly.Command;
+using Monopoly.Player;
 
 namespace Monopoly.Card
 {
@@ -26,9 +27,9 @@ namespace Monopoly.Card
             this.command = value;
         }
 
-        public void ExecuteCommand()
+        public void ExecuteCommand(Board board, PlayerObject target)
         {
-            this.command.Execute(board:null, target:null);
+            this.command.Execute(board, target);
         }
     }
 }
