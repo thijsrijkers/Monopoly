@@ -6,18 +6,28 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Behaviour
 {
-    public class NPCPlayer : PlayerObject
+    public class NPCPlayer : BehaviourType
     {
         private INPCBehaviour behaviour;
 
-        public void SwitchBehaviour()
+        public NPCPlayer(INPCBehaviour behaviour)
         {
+            this.behaviour = behaviour;
+        }
 
+        public override bool IsHuman()
+        {
+            return false;
+        }
+
+        public void SwitchBehaviour(INPCBehaviour value)
+        {
+            this.behaviour = value;
         }
 
         public void ToggleBehaviour()
         {
-
+     
         }
     }
 }

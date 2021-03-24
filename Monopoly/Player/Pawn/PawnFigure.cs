@@ -16,5 +16,15 @@ namespace Monopoly.Player.Pawn
             this.shape = shape;
             this.material = material;
         }
+
+        public Material GetMaterial()
+        {
+            return this.material;
+        }
+
+        public PawnShape GetShape()
+        {
+            return this.shape;
+        }
     }
 }

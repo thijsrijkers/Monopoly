@@ -6,7 +6,25 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Pawn
 {
-    class Gold
+    public class Gold : Material
     {
+        private string materialName;
+        private int materialStrenght;
+
+        public Gold()
+        {
+            this.materialName = "Gold";
+            this.materialStrenght = 10;
+        }
+
+        public override string GetMaterialName()
+        {
+            return this.materialName;
+        }
+
+        public override int GetMaterialStrenght()
+        {
+            return this.materialStrenght;
+        }
     }
 }
