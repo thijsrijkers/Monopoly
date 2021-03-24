@@ -15,6 +15,11 @@ namespace Monopoly
             players = new Queue<PlayerObject>();
         }
 
+        public List<Tile> GetTiles()
+        {
+            return tiles;
+        }
+
         public void TransactionPlayer(PlayerObject fromPlayer, PlayerObject ToPlayer, int amount)
         {
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monopoly.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,9 @@ namespace Monopoly.Card
             cards.Remove(value);
         }
 
-        public void ExecuteCard(CardObject value)
+        public void ExecuteCard(CardObject value, Board board, PlayerObject target)
         {
-            value.ExecuteCommand();
+            value.ExecuteCommand(board, target);
         }
     }
 }

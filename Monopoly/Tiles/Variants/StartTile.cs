@@ -10,7 +10,7 @@ namespace Monopoly.Tiles.Variants
     public class StartTile : Tile
     {
         private const int PASS_START_REWARD = 200;
-        public StartTile() : base(null, new GetMoneyCommand(PASS_START_REWARD))
+        public StartTile() : base(new GetMoneyCommand(PASS_START_REWARD), new GetMoneyCommand(PASS_START_REWARD))
         {
 
         }

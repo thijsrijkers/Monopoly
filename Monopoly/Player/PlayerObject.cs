@@ -16,13 +16,20 @@ namespace Monopoly.Player
             this.money = moneyValue;
         }
 
-        public virtual void GiveMoneyToBank(int value)
+        /// <summary>
+        /// Gives money to the invisible bank, if you die you are removed from the game
+        /// </summary>
+        /// <param name="board">The board</param>
+        /// <param name="value">The amount of money needed from you</param>
+        public virtual void GiveMoneyToBank(Board board, int value)
         {
             if (this.money >= value)
             {
                 this.money -= value;
-                //TODO wait for implementation of the bank aka the board class with a singleton
+                return;
             }
+
+            board.RemovePlayer(this);
         }
 
         public virtual void ReceiveMoney(int value)
@@ -30,7 +37,13 @@ namespace Monopoly.Player
             this.money += value;
         }
 
-        public virtual void GiveMoneyTo(int value, PlayerObject otherPlayer)
+        /// <summary>
+        /// Gives money to another player, if you die you give all your money to the other player and your removed from the game
+        /// </summary>
+        /// <param name="board">The board</param>
+        /// <param name="value">The amount of money needed from you</param>
+        /// <param name="otherPlayer">The other player</param>
+        public virtual void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
         {
             if(this.money >= value)
             {
@@ -38,17 +51,23 @@ namespace Monopoly.Player
                 otherPlayer.ReceiveMoney(value);
                 return;
             }
-            //TODO discuss a implementation for the else clause
+            otherPlayer.ReceiveMoney(this.money);
+            board.RemovePlayer(this);
         }
 
-        public virtual void ExecuteTile()
+        public virtual void ExecuteTile(Board value)
         {
-            //TODO Wait for implementation of execute function of tiles;
+            position.ExecuteStand(value, this);
         }
 
         public virtual void SetTile(Tile value)
         {
             this.position = value;
+        }
+
+        public Tile GetPosition()
+        {
+            return position;
         }
     }
 }

@@ -1,5 +1,10 @@
 ﻿using Monopoly;
+using Monopoly.Player;
+using Monopoly.Player.Behaviour;
+using Monopoly.Player.Pawn;
+using Monopoly.Tiles.Variants;
 using System;
+using System.Collections.Generic;
 
 namespace Monopoly
 {
@@ -22,11 +27,49 @@ namespace Monopoly
             town = new HouseBuilt(town);
             town = new HotelBuilt(town); //Hotel 
 
-            Console.WriteLine(town.getPrice());
-            Console.WriteLine(town.getAmountOfHouses());
-            Console.WriteLine(town.hasHotel());
+            //Console.WriteLine(town.getPrice());
+            //Console.WriteLine(town.getAmountOfHouses());
+            //Console.WriteLine(town.hasHotel());
 
-            Board board = Board.Build(4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ///Creation of materials and shapes
+            Material gold = new Gold();
+            Material plastic = new Plastic();
+            Material wood = new Wood();
+
+            PawnShape bramShape = PawnShape.BramShape;
+            PawnShape shoe = PawnShape.Shoe;
+            PawnShape ship = PawnShape.Battleship;
+
+            PawnFigure shipFigure = new PawnFigure(ship, plastic);
+            PawnFigure shoeFigure = new PawnFigure(shoe, wood);
+
+            ///Creation of board
+            Tile startTile = new StartTile();
+            Board board = Board.Build();
+            board.AddTile(startTile);
+
+            board.AddPlayer(new NPCPlayer(startTile, shipFigure, 1000));
+            board.AddPlayer(new NPCPlayer(startTile, shoeFigure, 1000));
+
+
+            ///Player
+            PawnFigure playerFigure = new PawnFigure(bramShape, gold);
+            HumanPlayer player = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
+            Console.WriteLine(player.GetPosition());
         }
     }
 }

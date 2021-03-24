@@ -12,35 +12,31 @@ namespace Monopoly
 {
     public partial class Board
     {
-        public static Board Build(int maxNPCs)
+        public static Board Build()
         {
             // build the board here
             Board board = new Board();
 
-            Tile startTile = new StartTile(); // TODO create something
-            board.AddTile(startTile);
+       
+            //for(int i = 0; i < maxNPCs; i++)
+            //{
+            //    // Randomization for NPC pawn figures
+            //    var rng = new Random();
 
-            board.AddTile(new Town(500));
+            //    // Get all types that implement Material
+            //    var materials = Assembly.GetExecutingAssembly()
+            //        .GetTypes()
+            //        .Where(x => 
+            //            x.IsAssignableTo(typeof(Material)))
+            //        .ToArray();
+            //    // Create a material with a randomly selected type
+            //    Material mat = (Material)Activator.CreateInstance(materials[rng.Next(0, materials.Length)]);
 
-            for(int i = 0; i < maxNPCs; i++)
-            {
-                // Randomization for NPC pawn figures
-                var rng = new Random();
+            //    PawnShape shape = (PawnShape)rng.Next(0, (int)PawnShape.BramShape + 1); // BramShape is the highest possible value
 
-                // Get all types that implement Material
-                var materials = Assembly.GetExecutingAssembly()
-                    .GetTypes()
-                    .Where(x => 
-                        x.IsAssignableTo(typeof(Material)))
-                    .ToArray();
-                // Create a material with a randomly selected type
-                Material mat = (Material)Activator.CreateInstance(materials[rng.Next(0, materials.Length)]);
-
-                PawnShape shape = (PawnShape)rng.Next(0, (int)PawnShape.BramShape + 1); // BramShape is the highest possible value
-
-                PawnFigure figure = new PawnFigure(shape, mat);
-                board.AddPlayer(new NPCPlayer(startTile, figure, 0));
-            }
+            //    PawnFigure figure = new PawnFigure(shape, mat);
+            //    board.AddPlayer(new NPCPlayer(startTile, figure, 0));
+            //}
 
 
 
