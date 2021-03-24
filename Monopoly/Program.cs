@@ -25,6 +25,8 @@ namespace Monopoly
             Console.WriteLine(town.getPrice());
             Console.WriteLine(town.getAmountOfHouses());
             Console.WriteLine(town.hasHotel());
+
+            Board board = Board.Build(4);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Monopoly.Card
 
         public void ExecuteCommand()
         {
-            this.command.Execute();
+            this.command.Execute(board:null, target:null);
         }
     }
 }

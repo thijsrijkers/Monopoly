@@ -7,18 +7,16 @@ namespace Monopoly.Player
     {
         private Tile position;
         private PawnFigure pawn;
-        private BehaviourType behaviour;
         private int money;
 
-        public PlayerObject(Tile positionValue, PawnFigure pawnValue, BehaviourType behaviourValue, int moneyValue)
+        public PlayerObject(Tile positionValue, PawnFigure pawnValue, int moneyValue)
         {
             this.position = positionValue;
             this.pawn = pawnValue;
-            this.behaviour = behaviourValue;
             this.money = moneyValue;
         }
 
-        public void GiveMoneyToBank(int value)
+        public virtual void GiveMoneyToBank(int value)
         {
             if (this.money >= value)
             {
@@ -27,12 +25,12 @@ namespace Monopoly.Player
             }
         }
 
-        public void ReceiveMoney(int value)
+        public virtual void ReceiveMoney(int value)
         {
             this.money += value;
         }
 
-        public void GiveMoneyTo(int value, PlayerObject otherPlayer)
+        public virtual void GiveMoneyTo(int value, PlayerObject otherPlayer)
         {
             if(this.money >= value)
             {
@@ -43,12 +41,12 @@ namespace Monopoly.Player
             //TODO discuss a implementation for the else clause
         }
 
-        public void ExecuteTile()
+        public virtual void ExecuteTile()
         {
             //TODO Wait for implementation of execute function of tiles;
         }
 
-        public void SetTile(Tile value)
+        public virtual void SetTile(Tile value)
         {
             this.position = value;
         }

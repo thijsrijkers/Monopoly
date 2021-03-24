@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monopoly.Command.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Monopoly
     {
         private double price;
 
-        public Town(double price)
+        public Town(double price) : base(new GetMoneyCommand(400), null)
         {
             this.price = price;
         }

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 
 namespace Monopoly
 {
-    public class Board
+    public partial class Board
     {
         private List<Tile> tiles;
         private Queue<PlayerObject> players;
         public PlayerObject current;
 
-        public void TransactionPlayer(PlayerObject fromPlayer, PlayerObject ToPlayer)
+        public Board()
         {
+            tiles = new List<Tile>();
+            players = new Queue<PlayerObject>();
+        }
 
+        public void TransactionPlayer(PlayerObject fromPlayer, PlayerObject ToPlayer, int amount)
+        {
         }
 
         public void TransactionToAllPlayers(PlayerObject value)
@@ -26,12 +31,12 @@ namespace Monopoly
 
         public void AddTile(Tile value)
         {
-
+            this.tiles.Add(value);
         }
 
         public void RemoveTile(Tile value)
         {
-
+            this.tiles.Remove(value);
         }
 
         public void AddPlayer(PlayerObject value)

@@ -1,4 +1,5 @@
-﻿using Monopoly.Player;
+﻿using Monopoly.Command;
+using Monopoly.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,31 @@ namespace Monopoly
 {
     public abstract class Tile
     {
-        private PlayerObject owner;
-        private String name;
+        private string name;
+        private BaseCommand standCommand;
+        private BaseCommand passCommand;
 
-        public void setOwner(PlayerObject owner = null)
+        public Tile(BaseCommand standCommand, BaseCommand passCommand)
         {
-            this.owner = owner;
+            this.standCommand = standCommand;
+            this.passCommand = passCommand;
         }
 
-        public void setName(String name = "Naamloos") 
+        public void setName(string name = "Naamloos") // >:O
         {
             this.name = name;
+        }
+
+        public void ExecuteStand(Board board, PlayerObject target)
+        {
+            if (standCommand != null)
+                standCommand.Execute(board, target);
+        }
+
+        public void ExecutePass(Board board, PlayerObject target)
+        {
+            if (passCommand != null)
+                passCommand.Execute(board, target);
         }
     }
 }

@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monopoly.Command
+namespace Monopoly.Tiles
 {
-    public interface BaseCommand
+    interface Ownable
     {
-        public void Execute(Board board, PlayerObject target);
+        public void setOwner(PlayerObject owner = null);
+
+        public PlayerObject getOwner();
     }
 }
