@@ -8,9 +8,8 @@ namespace Monopoly.Player.Behaviour
 {
     public class AggressiveBehaviour : INPCBehaviour
     {
-        public int RollDice()
-        {
-            throw new NotImplementedException();
+        public bool acceptsTransactions(NPCPlayer player) {
+            return true;
         }
     }
 }

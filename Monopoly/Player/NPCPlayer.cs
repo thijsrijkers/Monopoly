@@ -22,7 +22,17 @@ namespace Monopoly.Player.Behaviour
 
         public void ToggleBehaviour()
         {
-     
+            
         }
+
+        public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
+        {
+            bool result = behaviour.acceptsTransactions(this);
+
+            if (result) {
+                base.GiveMoneyTo(board, value, otherPlayer);
+            }
+        }
+
     }
 }

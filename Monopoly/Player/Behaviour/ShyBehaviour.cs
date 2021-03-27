@@ -6,21 +6,15 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Player.Behaviour
 {
-    public class CheatingBehaviour : INPCBehaviour
+    public class ShyBehaviour : INPCBehaviour
     {
-        private const int cheatingAmount = 10;
-
         public bool acceptsTransactions(NPCPlayer player)
-        {
-            int money = player.GetMoney();
-
-            return true;
-        }
-
-        public bool pullsCard(NPCPlayer player)
         {
             return false;
         }
 
+        public bool pullsCard(NPCPlayer player) {
+            return false;
+        }
     }
 }

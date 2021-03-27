@@ -69,5 +69,10 @@ namespace Monopoly.Player
         {
             return position;
         }
+
+        public int GetMoney()
+        {
+            return this.money;
+        }
     }
 }

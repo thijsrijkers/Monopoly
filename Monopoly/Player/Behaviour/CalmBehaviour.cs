@@ -8,9 +8,13 @@ namespace Monopoly.Player.Behaviour
 {
     public class CalmBehaviour : INPCBehaviour
     {
-        public int RollDice()
+        private const int threshold = 500;
+
+        public bool acceptsTransactions(NPCPlayer player)
         {
-            throw new NotImplementedException();
+            int money = player.GetMoney();
+
+            return money > threshold;
         }
     }
 }
