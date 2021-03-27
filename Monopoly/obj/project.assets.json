@@ -8,25 +8,25 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Brum\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\Ryand\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj",
+      "projectUniqueName": "D:\\Git Repos\\Monopoly\\Monopoly\\Monopoly.csproj",
       "projectName": "Monopoly",
-      "projectPath": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj",
-      "packagesPath": "C:\\Users\\Brum\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\obj\\",
+      "projectPath": "D:\\Git Repos\\Monopoly\\Monopoly\\Monopoly.csproj",
+      "packagesPath": "C:\\Users\\Ryand\\.nuget\\packages\\",
+      "outputPath": "D:\\Git Repos\\Monopoly\\Monopoly\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Brum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ryand\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -35,7 +35,9 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.emzi0767.com/api/v3/index.json": {},
+        "https://pkgs.dev.azure.com/naamloos-ops/Obsidian/_packaging/Obsidian.API/nuget/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
@@ -67,7 +69,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

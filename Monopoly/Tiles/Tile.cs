@@ -10,7 +10,7 @@ namespace Monopoly
 {
     public abstract class Tile
     {
-        private string name;
+        public string Name { get; private set; }
         private BaseCommand standCommand;
         private BaseCommand passCommand;
 
@@ -22,7 +22,7 @@ namespace Monopoly
 
         public void setName(string name = "Naamloos") // >:O
         {
-            this.name = name;
+            this.Name = name;
         }
 
         public void ExecuteStand(Board board, PlayerObject target)

@@ -9,6 +9,6 @@ namespace Monopoly.Command
 {
     public interface BaseCommand
     {
-        public void Execute(Board board, PlayerObject target);
+        public void Execute(Board board, PlayerObject executer, PlayerObject target = null);
     }
 }
