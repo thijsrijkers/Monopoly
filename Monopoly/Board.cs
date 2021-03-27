@@ -1,6 +1,7 @@
 ﻿using Monopoly.Player;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Monopoly
 {
@@ -52,7 +53,13 @@ namespace Monopoly
 
         public void RemovePlayer(PlayerObject value)
         {
+            players = new Queue<PlayerObject>(players.Where(s => s != value));
+        }
+
+        public void RequeuePlayer(PlayerObject value)
+        {
             players.Dequeue();
+            players.Enqueue(value);
         }
 
         public void DiceThrow(int value = 0)
@@ -82,9 +89,7 @@ namespace Monopoly
 
             if (diceOne != diceTwo)
             {
-                //this.RemovePlayer(currentPlayer);
-                //this.AddPlayer(currentPlayer);
-
+                this.RequeuePlayer(currentPlayer);
                 currentPlayer.GetPosition().ExecuteStand(this, currentPlayer);
                 return;
             }
@@ -92,6 +97,7 @@ namespace Monopoly
             if (throwCounter > 3)
             {
                 //TODO Ref the jail tile in the SetTile function
+                this.RequeuePlayer(currentPlayer);
                 currentPlayer.SetTile(GetTiles()[0]);
                 return;
             }
