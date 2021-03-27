@@ -27,11 +27,14 @@ namespace Monopoly
         {
             int returnAmount = 0;
 
-            foreach(Ownable tile in tiles)
+            foreach(Tile tile in tiles)
             {
-                if (tile.GetOwner() == value)
+                if (tile is Buildable)
                 {
-                    returnAmount++;
+                    if(((Buildable)tile).GetOwner() == value)
+                    {
+                        returnAmount++;
+                    }
                 }
             }
             return returnAmount;
