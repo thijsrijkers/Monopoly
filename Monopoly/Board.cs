@@ -55,7 +55,7 @@ namespace Monopoly
             players.Dequeue();
         }
 
-        public void DiceThrow(int value)
+        public void DiceThrow(int value = 0)
         {
             int throwCounter = value;
 
@@ -70,20 +70,21 @@ namespace Monopoly
             Tile playerTile = currentPlayer.GetPosition();
 
             int index = GetTiles().FindIndex(a => a == currentPlayer.GetPosition());
-            int completeThrow = diceOne + diceTwo;
 
-            if((index + completeThrow) <= GetTiles().Count)
-            {
-                currentPlayer.SetTile(GetTiles()[index + completeThrow]);     
-            }
-            else
-            {
-                int calculatedIndex = (index + completeThrow) - GetTiles().Count;
-                currentPlayer.SetTile(GetTiles()[calculatedIndex]);
-            }
+            //Dice throw
+            int amount = index + diceOne + diceTwo;
+            int result = amount > tiles.Count ? amount - tiles.Count : amount;
+
+            Console.WriteLine(diceOne + " + " + diceTwo + " = " + amount + ",  " +  result);
+
+            currentPlayer.SetTile(tiles[result]);
+
 
             if (diceOne != diceTwo)
             {
+                //this.RemovePlayer(currentPlayer);
+                //this.AddPlayer(currentPlayer);
+
                 currentPlayer.GetPosition().ExecuteStand(this, currentPlayer);
                 return;
             }

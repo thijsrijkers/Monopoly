@@ -71,6 +71,10 @@ namespace Monopoly
             {
                 Console.WriteLine(board.GetTiles()[i]);
             }
+
+            board.
+
+            board.DiceThrow();
         }
     }
 }
