@@ -80,9 +80,7 @@ namespace Monopoly
 
             //Dice throw
             int amount = index + diceOne + diceTwo;
-            int result = amount >= tiles.Count ? amount - tiles.Count : amount;
-                          
-            Console.WriteLine(diceOne + " + " + diceTwo + " = " + amount + ",  " +  result);
+            int result = amount >= tiles.Count ? amount - tiles.Count : amount;                  
 
             currentPlayer.SetTile(tiles[result]);
 
