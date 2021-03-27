@@ -8,7 +8,7 @@ using Monopoly.Player;
 
 namespace Monopoly.Card
 {
-    public class CardObject
+    public class CardObject : ICardCloneable
     {
         private BaseCommand command;
 
@@ -30,6 +30,11 @@ namespace Monopoly.Card
         public void ExecuteCommand(Board board, PlayerObject target)
         {
             this.command.Execute(board, target);
+        }
+
+        public ICardCloneable Clone()
+        {
+            return new CardObject(this.command);
         }
     }
 }

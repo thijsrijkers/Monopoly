@@ -7,15 +7,9 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Card
 {
-    public class Cardlist : ICardCloneable
+    public class Cardlist :ICardCloneable
     {
         private List<CardObject> cards;
-
-        public ICardCloneable Clone()
-        {
-            //TODO Fix this
-            return null;
-        }
 
         public CardObject DrawCard()
         {
@@ -36,6 +30,18 @@ namespace Monopoly.Card
         public void ExecuteCard(CardObject value, Board board, PlayerObject target)
         {
             value.ExecuteCommand(board, target);
+        }
+
+        public ICardCloneable Clone()
+        {
+            var list = new Cardlist();
+
+            foreach(var card in this.cards)
+            {
+                list.AddCard((CardObject)card.Clone());
+            }
+
+            return list;
         }
     }
 }
