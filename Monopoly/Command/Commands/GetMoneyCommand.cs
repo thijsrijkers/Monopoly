@@ -17,7 +17,7 @@ namespace Monopoly.Command.Commands
             this.amount = amount;
         }
 
-        public void Execute(Board board, PlayerObject target)
+        public void Execute(Board board, PlayerObject executor, PlayerObject target = null)
         {
             target.ReceiveMoney(amount);
         }
