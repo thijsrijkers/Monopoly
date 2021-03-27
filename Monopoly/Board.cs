@@ -68,8 +68,8 @@ namespace Monopoly
 
             Random rnd = new Random();
 
-            int diceOne = rnd.Next(0, 6);
-            int diceTwo = rnd.Next(0, 6);
+            int diceOne = rnd.Next(1, 7);
+            int diceTwo = rnd.Next(1, 7);
 
             throwCounter++;
 
@@ -80,8 +80,8 @@ namespace Monopoly
 
             //Dice throw
             int amount = index + diceOne + diceTwo;
-            int result = amount > tiles.Count ? amount - tiles.Count : amount;
-
+            int result = amount >= tiles.Count ? amount - tiles.Count : amount;
+                          
             Console.WriteLine(diceOne + " + " + diceTwo + " = " + amount + ",  " +  result);
 
             currentPlayer.SetTile(tiles[result]);
@@ -94,7 +94,7 @@ namespace Monopoly
                 return;
             }
 
-            if (throwCounter > 3)
+            if (throwCounter > 2)
             {
                 //TODO Ref the jail tile in the SetTile function
                 this.RequeuePlayer(currentPlayer);
