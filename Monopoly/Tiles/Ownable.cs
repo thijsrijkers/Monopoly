@@ -9,8 +9,8 @@ namespace Monopoly.Tiles
 {
     interface Ownable
     {
-        public void setOwner(PlayerObject owner = null);
+        public void SetOwner(PlayerObject owner = null);
 
-        public PlayerObject getOwner();
+        public PlayerObject GetOwner();
     }
 }

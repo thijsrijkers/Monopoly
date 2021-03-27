@@ -1,4 +1,5 @@
 ﻿using Monopoly.Player;
+using Monopoly.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,20 @@ namespace Monopoly
         public List<Tile> GetTiles()
         {
             return tiles;
+        }
+
+        public int GetNumberOfOwnables(PlayerObject value)
+        {
+            int returnAmount = 0;
+
+            foreach(Ownable tile in tiles)
+            {
+                if (tile.GetOwner() == value)
+                {
+                    returnAmount++;
+                }
+            }
+            return returnAmount;
         }
 
         public void TransactionPlayer(PlayerObject fromPlayer, PlayerObject ToPlayer, int amount)
