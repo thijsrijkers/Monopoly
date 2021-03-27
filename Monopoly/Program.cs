@@ -72,9 +72,9 @@ namespace Monopoly
                 Console.WriteLine(board.GetTiles()[i]);
             }
 
-            board.
-
-            board.DiceThrow();
+            board.AddPlayer(player);
+             
+            Console.WriteLine(board.GetNumberOfOwnables(player));
         }
     }
 }

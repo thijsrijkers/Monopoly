@@ -1,4 +1,6 @@
 ﻿using Monopoly.Command.Commands;
+using Monopoly.Player;
+using Monopoly.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace Monopoly
     class Town : Tile, Buildable
     {
         private double price;
+        private PlayerObject owner;
 
         public Town(double price) : base(new GetMoneyCommand(400), null)
         {
@@ -27,6 +30,16 @@ namespace Monopoly
 
         public Boolean hasHotel() {
             return false;
+        }
+
+        public void SetOwner(PlayerObject value = null)
+        {
+            this.owner = value;
+        }
+
+        public PlayerObject GetOwner()
+        {
+            return this.owner;
         }
     }
 }

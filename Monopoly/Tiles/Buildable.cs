@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monopoly.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,9 @@ namespace Monopoly
         public int getAmountOfHouses();
 
         public Boolean hasHotel();
+
+        public void SetOwner(PlayerObject owner);
+
+        public PlayerObject GetOwner();
     }
 }

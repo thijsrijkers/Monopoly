@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monopoly.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,16 @@ namespace Monopoly
 
         public Boolean hasHotel() {
             return true;
+        }
+
+        public void SetOwner(PlayerObject value)
+        {
+            tile.SetOwner(value);
+        }
+
+        public PlayerObject GetOwner()
+        {
+            return this.tile.GetOwner();
         }
     }
 }

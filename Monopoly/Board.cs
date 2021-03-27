@@ -1,6 +1,8 @@
 ﻿using Monopoly.Player;
+using Monopoly.Tiles;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Monopoly
 {
@@ -19,6 +21,23 @@ namespace Monopoly
         public List<Tile> GetTiles()
         {
             return tiles;
+        }
+
+        public int GetNumberOfOwnables(PlayerObject value)
+        {
+            int returnAmount = 0;
+
+            foreach(Tile tile in tiles)
+            {
+                if (tile is Buildable)
+                {
+                    if(((Buildable)tile).GetOwner() == value)
+                    {
+                        returnAmount++;
+                    }
+                }
+            }
+            return returnAmount;
         }
 
         public void TransactionPlayer(PlayerObject fromPlayer, PlayerObject ToPlayer, int amount)
@@ -52,7 +71,13 @@ namespace Monopoly
 
         public void RemovePlayer(PlayerObject value)
         {
+            players = new Queue<PlayerObject>(players.Where(s => s != value));
+        }
+
+        public void RequeuePlayer(PlayerObject value)
+        {
             players.Dequeue();
+            players.Enqueue(value);
         }
 
         public void DiceThrow(int value = 0)
@@ -61,8 +86,8 @@ namespace Monopoly
 
             Random rnd = new Random();
 
-            int diceOne = rnd.Next(0, 6);
-            int diceTwo = rnd.Next(0, 6);
+            int diceOne = rnd.Next(1, 7);
+            int diceTwo = rnd.Next(1, 7);
 
             throwCounter++;
 
@@ -73,25 +98,22 @@ namespace Monopoly
 
             //Dice throw
             int amount = index + diceOne + diceTwo;
-            int result = amount > tiles.Count ? amount - tiles.Count : amount;
-
-            Console.WriteLine(diceOne + " + " + diceTwo + " = " + amount + ",  " +  result);
+            int result = amount >= tiles.Count ? amount - tiles.Count : amount;                  
 
             currentPlayer.SetTile(tiles[result]);
 
 
             if (diceOne != diceTwo)
             {
-                //this.RemovePlayer(currentPlayer);
-                //this.AddPlayer(currentPlayer);
-
+                this.RequeuePlayer(currentPlayer);
                 currentPlayer.GetPosition().ExecuteStand(this, currentPlayer);
                 return;
             }
 
-            if (throwCounter > 3)
+            if (throwCounter > 2)
             {
                 //TODO Ref the jail tile in the SetTile function
+                this.RequeuePlayer(currentPlayer);
                 currentPlayer.SetTile(GetTiles()[0]);
                 return;
             }
