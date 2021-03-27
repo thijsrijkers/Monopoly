@@ -1,4 +1,5 @@
 ﻿using Monopoly.Player;
+using System;
 using System.Collections.Generic;
 
 namespace Monopoly
@@ -54,9 +55,48 @@ namespace Monopoly
             players.Dequeue();
         }
 
-        public void DiceThrow()
+        public void DiceThrow(int value)
         {
+            int throwCounter = value;
 
+            Random rnd = new Random();
+
+            int diceOne = rnd.Next(0, 6);
+            int diceTwo = rnd.Next(0, 6);
+
+            throwCounter++;
+
+            PlayerObject currentPlayer = players.Peek();
+            Tile playerTile = currentPlayer.GetPosition();
+
+            int index = GetTiles().FindIndex(a => a == currentPlayer.GetPosition());
+            int completeThrow = diceOne + diceTwo;
+
+            if((index + completeThrow) <= GetTiles().Count)
+            {
+                currentPlayer.SetTile(GetTiles()[index + completeThrow]);     
+            }
+            else
+            {
+                int calculatedIndex = (index + completeThrow) - GetTiles().Count;
+                currentPlayer.SetTile(GetTiles()[calculatedIndex]);
+            }
+
+            if (diceOne != diceTwo)
+            {
+                currentPlayer.GetPosition().ExecuteStand(this, currentPlayer);
+                return;
+            }
+
+            if (throwCounter > 3)
+            {
+                //TODO Ref the jail tile in the SetTile function
+                currentPlayer.SetTile(GetTiles()[0]);
+                return;
+            }
+
+            currentPlayer.GetPosition().ExecuteStand(this, currentPlayer);
+            DiceThrow(throwCounter);
         }
     }
 }
