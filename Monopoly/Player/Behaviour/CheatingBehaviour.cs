@@ -21,6 +21,5 @@ namespace Monopoly.Player.Behaviour
         {
             return false;
         }
-
     }
 }

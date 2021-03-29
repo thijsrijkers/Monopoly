@@ -1,4 +1,6 @@
 ﻿using Monopoly;
+using Monopoly.Card;
+using Monopoly.Command.Commands;
 using Monopoly.Player;
 using Monopoly.Player.Behaviour;
 using Monopoly.Player.Pawn;
@@ -12,11 +14,11 @@ namespace Monopoly
     {
         static void Main(string[] args)
         {
+            //Start
             //Gevangenis
-            //Bouwbaar
-            //Stations
-            //Electriciteitbedrijven
+            //GoToJail
             //kans
+            //Algemeen fonds
             //belasting
             //Free parking
 
@@ -67,14 +69,38 @@ namespace Monopoly
             PawnFigure playerFigure = new PawnFigure(bramShape, gold);
             HumanPlayer player = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
         
-            for(int i = 0; i < board.GetTiles().Count; i++)
-            {
-                Console.WriteLine(board.GetTiles()[i]);
-            }
+            //for(int i = 0; i < board.GetTiles().Count; i++)
+            //{
+            //    Console.WriteLine(board.GetTiles()[i]);
+            //}
 
             board.AddPlayer(player);
-             
-            Console.WriteLine(board.GetNumberOfOwnables(player));
+
+            Console.WriteLine(player.GetPosition());
+
+            board.DiceThrow();
+            board.DiceThrow();
+            board.DiceThrow();
+
+            Console.WriteLine(player.GetPosition());
+
+            //Console.WriteLine(board.GetNumberOfOwnables(player));
+
+
+
+
+
+
+
+            Cardlist fundCards = new Cardlist();
+            JailPlayer jailPlayerCommand = new JailPlayer();
+            CardObject card = new CardObject(jailPlayerCommand);
+
+            fundCards.AddCard(card);
+
+            Cardlist chanceCards = (Cardlist)fundCards.Clone();
+
+            fundCards.RemoveCard(card);
         }
     }
 }

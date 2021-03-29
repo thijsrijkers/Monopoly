@@ -9,7 +9,7 @@ namespace Monopoly.Card
 {
     public class Cardlist :ICardCloneable
     {
-        private List<CardObject> cards;
+        private List<CardObject> cards = new List<CardObject>();
 
         public CardObject DrawCard()
         {
