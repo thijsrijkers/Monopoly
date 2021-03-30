@@ -8,8 +8,12 @@ namespace Monopoly.Player.Behaviour
 {
     public interface INPCBehaviour
     {
+        public bool wantsToRush(NPCPlayer player);
+
         public bool acceptsTransactions(NPCPlayer player);
 
-        //public bool pullsCard(NPCPlayer player);
+        public bool prefersJail(NPCPlayer player);
+
+        public bool pullsCard(NPCPlayer player);
     }
 }

@@ -26,6 +26,21 @@ namespace Monopoly.Player.Behaviour
             
         }
 
+        public override void ThrowDice(Board board, int alreadyThrown)
+        {
+            Random rnd = new Random();
+            int jailChange = rnd.Next(1, 11);
+
+            if (behaviour.prefersJail(this) && jailChange > 6)
+            {
+                this.SendToJail(board);
+                return;
+            }
+
+
+    
+        }
+
         public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
         {
             bool result = behaviour.acceptsTransactions(this);

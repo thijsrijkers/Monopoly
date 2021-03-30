@@ -10,10 +10,20 @@ namespace Monopoly.Player.Behaviour
     {
         private const int cheatingAmount = 10;
 
+        public bool wantsToRush(NPCPlayer player)
+        {
+            return false;
+        }
+
         public bool acceptsTransactions(NPCPlayer player)
         {
             int money = player.GetMoney();
 
+            return true;
+        }
+
+        public bool prefersJail(NPCPlayer player)
+        {
             return true;
         }
 

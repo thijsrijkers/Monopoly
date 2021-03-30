@@ -77,7 +77,7 @@ namespace Monopoly.Player
             return this.money;
         }
 
-        public void ThrowDice(Board board, int alreadyThrown)
+        public virtual void ThrowDice(Board board, int alreadyThrown)
         {
             int throwCounter = alreadyThrown;
 
