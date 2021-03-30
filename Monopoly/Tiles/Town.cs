@@ -11,15 +11,15 @@ namespace Monopoly
 {
     class Town : Tile, Buildable
     {
-        private double price;
+        private int price;
         private PlayerObject owner;
 
-        public Town(double price) : base(new GetMoneyCommand(400))
+        public Town(int price) : base(new GetMoneyCommand(400))
         {
             this.price = price;
         }
 
-        public double getPrice()
+        public int getPrice()
         {
             return this.price;
         }

@@ -99,51 +99,10 @@ namespace Monopoly
             players.Enqueue(value);
         }
 
-        public void DiceThrow(int value = 0)
+        public void NextTurn()
         {
-            int throwCounter = value;
-
-            Random rnd = new Random();
-
-            int diceOne = rnd.Next(1, 7);
-            int diceTwo = rnd.Next(1, 7);
-
-            throwCounter++;
-
             PlayerObject currentPlayer = players.Peek();
-            Tile playerTile = currentPlayer.GetPosition();
-
-            int index = GetTiles().FindIndex(a => a == currentPlayer.GetPosition());
-
-            //Dice throw
-            int amount = index + diceOne + diceTwo;
-
-            if (amount >= tiles.Count)
-            {
-                amount -= tiles.Count;
-                currentPlayer.ReceiveMoney(200);
-            }                  
-
-            currentPlayer.SetTile(tiles[amount]);
-
-
-            if (diceOne != diceTwo)
-            {
-                this.RequeuePlayer(currentPlayer);
-                currentPlayer.GetPosition().ExecuteStand(this, currentPlayer);
-                return;
-            }
-
-            if (throwCounter > 2)
-            {
-                //TODO Ref the jail tile in the SetTile function
-                this.RequeuePlayer(currentPlayer);
-                currentPlayer.SetTile(GetTiles()[0]);
-                return;
-            }
-
-            currentPlayer.GetPosition().ExecuteStand(this, currentPlayer);
-            DiceThrow(throwCounter);
+            currentPlayer.ThrowDice(this, 0);
         }
     }
 }

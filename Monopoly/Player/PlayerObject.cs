@@ -1,6 +1,7 @@
 ﻿using Monopoly.Command.Commands;
 using Monopoly.Player.Behaviour;
 using Monopoly.Player.Pawn;
+using Monopoly.Tiles;
 using System;
 
 namespace Monopoly.Player
@@ -77,7 +78,7 @@ namespace Monopoly.Player
             return this.money;
         }
 
-        public void ThrowDice(Board board, int alreadyThrown)
+        public virtual void ThrowDice(Board board, int alreadyThrown)
         {
             int throwCounter = alreadyThrown;
 
@@ -119,6 +120,20 @@ namespace Monopoly.Player
             board.RequeuePlayer(this);
             JailPlayer jailPlayerCommand = new JailPlayer();
             jailPlayerCommand.Execute(board, this);
+        }
+
+        public void buy(Board board) {
+            Buildable position = (Buildable)this.GetPosition();
+            int price = position.getPrice();
+
+            this.GiveMoneyToBank(board, position.getPrice());
+
+            if (this.money >= price)
+            {
+                this.money -= price;
+                position = new Owned(position);
+                position.SetOwner(this);
+            }
         }
     }
 }

@@ -8,12 +8,23 @@ namespace Monopoly.Player.Behaviour
 {
     public class ShyBehaviour : INPCBehaviour
     {
+        public bool wantsToRush(NPCPlayer player)
+        {
+            return false;
+        }
+
         public bool acceptsTransactions(NPCPlayer player)
         {
             return false;
         }
 
-        public bool pullsCard(NPCPlayer player) {
+        public bool prefersJail(NPCPlayer player)
+        {
+            return false;
+        }
+
+        public bool pullsCard(NPCPlayer player) 
+        {
             return false;
         }
     }

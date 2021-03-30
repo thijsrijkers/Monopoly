@@ -26,17 +26,54 @@ namespace Monopoly.Player.Behaviour
             
         }
 
+        public override void ThrowDice(Board board, int alreadyThrown)
+        {
+            Random rnd = new Random();
+            int jailChange = rnd.Next(1, 11);
+
+            if (behaviour.prefersJail(this) && jailChange > 5)
+            {
+                this.SendToJail(board);
+                return;
+            }
+
+            if(behaviour.wantsToRush(this))
+            {
+                base.ThrowDice(board, 0);
+                base.ThrowDice(board, 0);
+                return;
+            }
+
+            base.ThrowDice(board, 0);
+        }
+
         public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
         {
-            bool result = behaviour.acceptsTransactions(this);
+            bool accepts = behaviour.acceptsTransactions(this);
 
-            if (result) {
+            if (accepts) 
+            {
                 base.GiveMoneyTo(board, value, otherPlayer);
             }
         }
 
-        public override void GiveMoneyToBank(Board board, int value) { 
-            
+        public override void GiveMoneyToBank(Board board, int value) {
+            bool accepts = behaviour.acceptsTransactions(this);
+
+            if (accepts)
+            {
+                base.GiveMoneyToBank(board, value);
+            }
+        }
+
+        public void buy(Board board)
+        {
+            bool accepts = behaviour.acceptsTransactions(this);
+
+            if (accepts) 
+            {
+                base.buy(board);
+            }
         }
 
     }

@@ -17,7 +17,7 @@ namespace Monopoly
             this.tile = tile;
         }
 
-        public double getPrice()
+        public int getPrice()
         {
             return this.tile.getPrice() * 2;
         }
