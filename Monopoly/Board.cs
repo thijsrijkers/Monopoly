@@ -99,9 +99,13 @@ namespace Monopoly
             //Dice throw
             int amount = index + diceOne + diceTwo;
 
-            int result = amount >= tiles.Count ? amount - tiles.Count : amount;                  
+            if (amount >= tiles.Count)
+            {
+                amount -= tiles.Count;
+                currentPlayer.ReceiveMoney(200);
+            }                  
 
-            currentPlayer.SetTile(tiles[result]);
+            currentPlayer.SetTile(tiles[amount]);
 
 
             if (diceOne != diceTwo)
