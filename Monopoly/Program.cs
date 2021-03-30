@@ -7,6 +7,9 @@ using Monopoly.Player.Pawn;
 using Monopoly.Tiles.Variants;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("Monopoly.Test")] // Ensure internals are visible to test project
 
 namespace Monopoly
 {
