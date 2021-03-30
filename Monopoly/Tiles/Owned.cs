@@ -11,7 +11,7 @@ namespace Monopoly.Tiles
     {
         private Buildable tile;
 
-        public Owned(Buildable tile) : base(null, null)
+        public Owned(Buildable tile) : base(null)
         {
             this.tile = tile;
         }
