@@ -73,6 +73,11 @@ namespace Monopoly
 
         }
 
+        public Queue<PlayerObject> GetPlayers()
+        {
+            return players;
+        }
+
         public void AddTile(Tile value)
         {
             this.tiles.Add(value);
