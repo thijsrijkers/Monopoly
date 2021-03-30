@@ -35,5 +35,9 @@ namespace Monopoly.Player.Behaviour
             }
         }
 
+        public override void GiveMoneyToBank(Board board, int value) { 
+            
+        }
+
     }
 }
