@@ -65,27 +65,32 @@ namespace Monopoly
             ///Creation of board
             Board board = Board.Build(15);
 
-            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shipFigure, 1000));
-            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
+            AggressiveBehaviour boos = new AggressiveBehaviour();
+            NPCPlayer bozeman = new NPCPlayer(board.GetTiles()[0], shipFigure, 1000);
+            bozeman.SwitchBehaviour(boos);
+            board.AddPlayer(bozeman);
+
+            //board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shipFigure, 1000));
+            //board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
 
             ///Player
             PawnFigure playerFigure = new PawnFigure(bramShape, gold);
-            HumanPlayer player = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
-        
+            HumanPlayer humanPlayer = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
+
             //for(int i = 0; i < board.GetTiles().Count; i++)
             //{
             //    Console.WriteLine(board.GetTiles()[i]);
             //}
 
-            board.AddPlayer(player);
+            board.AddPlayer(humanPlayer);
 
-            Console.WriteLine(player.GetPosition());
+            Console.WriteLine(humanPlayer.GetPosition());
 
             board.NextTurn();
             board.NextTurn();
             board.NextTurn();
 
-            Console.WriteLine(player.GetPosition());
+            Console.WriteLine(humanPlayer.GetPosition());
 
             //Console.WriteLine(board.GetNumberOfOwnables(player));
 

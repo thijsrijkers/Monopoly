@@ -97,10 +97,8 @@ namespace Monopoly.Player
 
             SetTile(board.GetTiles()[result]);
 
-
             if (diceOne != diceTwo)
             {
-                board.RequeuePlayer(this);
                 GetPosition().ExecuteStand(board, this);
                 return;
             }
@@ -117,7 +115,6 @@ namespace Monopoly.Player
 
         public void SendToJail(Board board)
         {
-            board.RequeuePlayer(this);
             JailPlayer jailPlayerCommand = new JailPlayer();
             jailPlayerCommand.Execute(board, this);
         }
