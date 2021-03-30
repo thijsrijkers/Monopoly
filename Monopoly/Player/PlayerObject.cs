@@ -121,19 +121,5 @@ namespace Monopoly.Player
             JailPlayer jailPlayerCommand = new JailPlayer();
             jailPlayerCommand.Execute(board, this);
         }
-
-        public void buy(Board board) {
-            Buildable position = (Buildable)this.GetPosition();
-            int price = position.getPrice();
-
-            this.GiveMoneyToBank(board, position.getPrice());
-
-            if (this.money >= price)
-            {
-                this.money -= price;
-                position = new Owned(position);
-                position.SetOwner(this);
-            }
-        }
     }
 }
