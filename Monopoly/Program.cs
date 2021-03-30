@@ -7,6 +7,9 @@ using Monopoly.Player.Pawn;
 using Monopoly.Tiles.Variants;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("Monopoly.Test")] // Ensure internals are visible to test project
 
 namespace Monopoly
 {
@@ -78,9 +81,9 @@ namespace Monopoly
 
             Console.WriteLine(player.GetPosition());
 
-            board.DiceThrow();
-            board.DiceThrow();
-            board.DiceThrow();
+            board.NextTurn();
+            board.NextTurn();
+            board.NextTurn();
 
             Console.WriteLine(player.GetPosition());
 

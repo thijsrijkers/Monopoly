@@ -12,12 +12,10 @@ namespace Monopoly
     {
         public string Name { get; private set; }
         private BaseCommand standCommand;
-        private BaseCommand passCommand;
 
-        public Tile(BaseCommand standCommand, BaseCommand passCommand)
+        public Tile(BaseCommand standCommand)
         {
             this.standCommand = standCommand;
-            this.passCommand = passCommand;
         }
 
         public void setName(string name = "Naamloos") // >:O
@@ -29,12 +27,6 @@ namespace Monopoly
         {
             if (standCommand != null)
                 standCommand.Execute(board, target);
-        }
-
-        public void ExecutePass(Board board, PlayerObject target)
-        {
-            if (passCommand != null)
-                passCommand.Execute(board, target);
         }
     }
 }

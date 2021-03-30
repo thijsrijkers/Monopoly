@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj": {}
+    "E:\\GitHub\\Monopoly\\Monopoly\\Monopoly.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj": {
+    "E:\\GitHub\\Monopoly\\Monopoly\\Monopoly.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj",
+        "projectUniqueName": "E:\\GitHub\\Monopoly\\Monopoly\\Monopoly.csproj",
         "projectName": "Monopoly",
-        "projectPath": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\Monopoly.csproj",
-        "packagesPath": "C:\\Users\\Brum\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Brum\\Desktop\\designpatterns\\Monopoly\\Monopoly\\obj\\",
+        "projectPath": "E:\\GitHub\\Monopoly\\Monopoly\\Monopoly.csproj",
+        "packagesPath": "C:\\Users\\Ryan\\.nuget\\packages\\",
+        "outputPath": "E:\\GitHub\\Monopoly\\Monopoly\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Brum\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ryan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
