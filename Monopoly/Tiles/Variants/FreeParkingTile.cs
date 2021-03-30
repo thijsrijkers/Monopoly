@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class FreeParking : Tile
+    public class FreeParkingTile : Tile
     {
-        public FreeParking() : base(null)
+        public FreeParkingTile() : base(null)
         {
         }
     }
