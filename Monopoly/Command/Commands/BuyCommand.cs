@@ -20,18 +20,11 @@ namespace Monopoly.Command.Commands
 
         public void Execute(Board board, PlayerObject executor, PlayerObject target = null)
         {
-            executor.ReceiveMoney(amount);
-
-            //executor.get
-            
-            
             Buildable position = (Buildable)executor.GetPosition();
+
+            executor.GiveMoneyToBank(board, position.getPrice());
+
             position = new Owned(position);
-
-
-            //board.GetTiles().Find(x => x.getPlayer == typeof(JailTile)));
-            //new Owned();
-            //.First(x => x.GetType() == typeof(JailTile))
         }
     }
 }

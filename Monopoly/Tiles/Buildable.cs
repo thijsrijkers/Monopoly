@@ -9,7 +9,7 @@ namespace Monopoly
 {
     interface Buildable
     {
-        public double getPrice();
+        public int getPrice();
 
         public int getAmountOfHouses();
 

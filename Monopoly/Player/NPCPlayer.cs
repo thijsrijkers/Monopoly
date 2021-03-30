@@ -43,15 +43,21 @@ namespace Monopoly.Player.Behaviour
 
         public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
         {
-            bool result = behaviour.acceptsTransactions(this);
+            bool accepts = behaviour.acceptsTransactions(this);
 
-            if (result) {
+            if (accepts) 
+            {
                 base.GiveMoneyTo(board, value, otherPlayer);
             }
         }
 
-        public override void GiveMoneyToBank(Board board, int value) { 
-            
+        public override void GiveMoneyToBank(Board board, int value) {
+            bool accepts = behaviour.acceptsTransactions(this);
+
+            if (accepts)
+            {
+                base.GiveMoneyToBank(board, value);
+            }
         }
 
     }
