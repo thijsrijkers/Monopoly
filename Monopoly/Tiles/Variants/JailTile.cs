@@ -9,7 +9,7 @@ namespace Monopoly.Tiles.Variants
 {
     public class JailTile : Tile
     {
-        public JailTile() : base(null, null)
+        public JailTile() : base(null)
         {
         }
     }
