@@ -16,9 +16,32 @@ namespace Monopoly.Player.Behaviour
             this.behaviour = new CalmBehaviour();
         }
 
-        public void SwitchBehaviour(INPCBehaviour value)
+        public void SwitchBehaviour(Board board)
         {
-            this.behaviour = value;
+            Random rnd = new Random();
+            bool isCheating = rnd.Next(1, 11) == 5;
+            
+            if(isCheating)
+            {
+                this.behaviour = new CheatingBehaviour();
+                return;
+            }
+
+            if (this.GetMoney() < 200)
+            {
+                this.behaviour = new ShyBehaviour();
+                return;
+            }
+
+            int index = board.GetTiles().FindIndex(a => a == GetPosition());
+
+            if (index < (board.GetTiles().Count / 4))
+            {
+                this.behaviour = new AggressiveBehaviour();
+                return;
+            }
+
+            this.behaviour = new CalmBehaviour();
         }
 
         public void ToggleBehaviour()
@@ -28,6 +51,8 @@ namespace Monopoly.Player.Behaviour
 
         public override void ThrowDice(Board board, int alreadyThrown)
         {
+            SwitchBehaviour(board);
+
             Random rnd = new Random();
             int jailChange = rnd.Next(1, 11);
 
