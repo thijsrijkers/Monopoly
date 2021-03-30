@@ -32,7 +32,37 @@ namespace Monopoly
             }
 
             // Add cards // USE CLONE METHOD TO CREATE MULTIPLES
-            var chance1 = new CardObject(new GetMoneyCommand(400));
+            var chance1 = new CardObject(new GetMoneyCommand(200));
+            var chance2 = new CardObject(new PayCommand(400));
+            var chance3 = new CardObject(new JailPlayer());
+            var chance4 = new CardObject(new PayAllCommand(20));
+            // Get 400
+            board.AddChanceCard(chance1);
+            for(int i = 0; i < 5; i++)
+            {
+                board.AddChanceCard(chance1.Clone());
+            }
+            // Pay 200
+            board.AddChanceCard(chance2);
+            for (int i = 0; i < 5; i++)
+            {
+                board.AddChanceCard(chance2.Clone());
+            }
+            // Go to jail
+            board.AddChanceCard(chance3);
+            for (int i = 0; i < 3; i++)
+            {
+                board.AddChanceCard(chance3.Clone());
+            }
+            // Pay all players 20
+            board.AddChanceCard(chance4);
+            for (int i = 0; i < 3; i++)
+            {
+                board.AddChanceCard(chance4.Clone());
+            }
+
+            // Add community chest cards
+
 
             // Create more tiles
 

@@ -11,8 +11,9 @@ namespace Monopoly.Card
     public class CardObject
     {
         private BaseCommand command;
+        private string description;
 
-        public CardObject(BaseCommand command)
+        public CardObject(BaseCommand command, string description = "")
         {
             this.command = command;
         }
@@ -29,6 +30,7 @@ namespace Monopoly.Card
 
         public void ExecuteCommand(Board board, PlayerObject target)
         {
+            Console.WriteLine(description);
             this.command.Execute(board, target);
         }
 

@@ -63,7 +63,7 @@ namespace Monopoly
         {
         }
 
-        public void TransactionToAllPlayers(PlayerObject value)
+        public void TransactionToAllPlayers(PlayerObject value, int amount)
         {
 
         }

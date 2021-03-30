@@ -48,7 +48,7 @@ namespace Monopoly.Player
         /// <param name="otherPlayer">The other player</param>
         public virtual void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
         {
-            if(this.money >= value)
+            if (this.money >= value)
             {
                 this.money -= value;
                 otherPlayer.ReceiveMoney(value);
@@ -66,6 +66,28 @@ namespace Monopoly.Player
         public virtual void SetTile(Tile value)
         {
             this.position = value;
+        }
+
+        public virtual void Move(Board board, int steps)
+        {
+            int index = board.GetTiles().FindIndex(a => a == GetPosition());
+
+            //Dice throw
+            int amount = index - steps;
+
+            if (amount <= 0)
+            {
+                amount += board.GetTiles().Count;
+            }
+            else if (amount >= board.GetTiles().Count)
+            {
+                amount -= board.GetTiles().Count;
+                ReceiveMoney(200);
+            }
+
+            SetTile(board.GetTiles()[amount]);
+
+            GetPosition().ExecuteStand(board, this);
         }
 
         public Tile GetPosition()
@@ -124,7 +146,7 @@ namespace Monopoly.Player
             jailPlayerCommand.Execute(board, this);
         }
 
-        public void buy(Board board) 
+        public void buy(Board board)
         {
             Buildable position = (Buildable)this.GetPosition();
             int price = position.getPrice();
