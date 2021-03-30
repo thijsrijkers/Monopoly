@@ -7,41 +7,37 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Card
 {
-    public class Cardlist :ICardCloneable
+    public class Cardlist
     {
-        private List<CardObject> cards = new List<CardObject>();
+        private Queue<CardObject> cards = new Queue<CardObject>();
 
         public CardObject DrawCard()
         {
-            Random rnd = new Random();
-            return cards[rnd.Next(0, cards.Count + 1)];
+            var card = cards.Dequeue();
+            cards.Enqueue(card);
+            // Picked card and put it at bottom of list.
+            return card;
         }
 
         public void AddCard(CardObject value)
         {
-            cards.Add(value);
+            cards.Enqueue(value);
         }
 
         public void RemoveCard(CardObject value)
         {
-            cards.Remove(value);
+            cards = (Queue<CardObject>)cards.Where(x => x != value);
+        }
+
+        private void shuffle()
+        {
+            var rng = new Random();
+            cards.OrderBy(x => rng.Next());
         }
 
         public void ExecuteCard(CardObject value, Board board, PlayerObject target)
         {
             value.ExecuteCommand(board, target);
-        }
-
-        public ICardCloneable Clone()
-        {
-            var list = new Cardlist();
-
-            foreach(var card in this.cards)
-            {
-                list.AddCard((CardObject)card.Clone());
-            }
-
-            return list;
         }
     }
 }

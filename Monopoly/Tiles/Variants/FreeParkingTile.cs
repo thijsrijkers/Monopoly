@@ -1,4 +1,4 @@
-﻿using Monopoly.Command.Commands;
+﻿using Monopoly.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class StartTile : Tile
+    public class FreeParking : Tile
     {
-        public StartTile() : base(null)
+        public FreeParking() : base(null)
         {
-
         }
     }
 }
