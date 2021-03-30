@@ -78,9 +78,9 @@ namespace Monopoly
 
             Console.WriteLine(player.GetPosition());
 
-            board.DiceThrow();
-            board.DiceThrow();
-            board.DiceThrow();
+            board.NextTurn();
+            board.NextTurn();
+            board.NextTurn();
 
             Console.WriteLine(player.GetPosition());
 
