@@ -11,7 +11,7 @@ namespace Monopoly
     {
         private Buildable tile;
 
-        public HotelBuilt(Buildable tile) : base(null, null)
+        public HotelBuilt(Buildable tile) : base(null)
         {
             this.tile = tile;
         }
