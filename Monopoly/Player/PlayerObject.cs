@@ -132,10 +132,8 @@ namespace Monopoly.Player
             {
                 this.money -= price;
                 position = new Owned(position);
+                position.SetOwner(this);
             }
-
-
-            
         }
     }
 }

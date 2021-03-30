@@ -45,5 +45,15 @@ namespace Monopoly.Player.Behaviour
             }
         }
 
+        public void buy(Board board)
+        {
+            bool accepts = behaviour.acceptsTransactions(this);
+
+            if (accepts) 
+            {
+                base.buy(board);
+            }
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 using Monopoly.Command.Commands;
 using Monopoly.Player;
 using Monopoly.Player.Behaviour;
+using Monopoly.Player.Pawn;
 using NUnit.Framework;
 
 namespace Monopoly.Test
@@ -23,6 +24,19 @@ namespace Monopoly.Test
 
             Assert.AreEqual(playerA.GetMoney(), 100);
             Assert.AreEqual(playerB.GetMoney(), 1100);
+        }
+
+        [Test]
+        public void TestBuy()
+        {
+            Material wood = new Wood();
+            PawnShape shoe = PawnShape.Shoe;
+            PawnFigure shoeFigure = new PawnFigure(shoe, wood);
+
+            Board board = Board.Build(15);
+            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
+
+            //Assert.AreEqual(playerB.GetMoney(), 1100);
         }
     }
 }
