@@ -93,14 +93,17 @@ namespace Monopoly.Player
 
             //Dice throw
             int amount = index + diceOne + diceTwo;
-            int result = amount >= board.GetTiles().Count ? amount - board.GetTiles().Count : amount;
 
-            SetTile(board.GetTiles()[result]);
+            if (amount >= board.GetTiles().Count)
+            {
+                amount -= board.GetTiles().Count;
+                ReceiveMoney(200);
+            }
 
+            SetTile(board.GetTiles()[amount]);
 
             if (diceOne != diceTwo)
             {
-                board.RequeuePlayer(this);
                 GetPosition().ExecuteStand(board, this);
                 return;
             }
@@ -117,12 +120,12 @@ namespace Monopoly.Player
 
         public void SendToJail(Board board)
         {
-            board.RequeuePlayer(this);
             JailPlayer jailPlayerCommand = new JailPlayer();
             jailPlayerCommand.Execute(board, this);
         }
 
-        public void buy(Board board) {
+        public void buy(Board board) 
+        {
             Buildable position = (Buildable)this.GetPosition();
             int price = position.getPrice();
 

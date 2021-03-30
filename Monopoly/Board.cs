@@ -93,16 +93,11 @@ namespace Monopoly
             players = new Queue<PlayerObject>(players.Where(s => s != value));
         }
 
-        public void RequeuePlayer(PlayerObject value)
-        {
-            players.Dequeue();
-            players.Enqueue(value);
-        }
-
         public void NextTurn()
         {
-            PlayerObject currentPlayer = players.Peek();
+            PlayerObject currentPlayer = players.Dequeue();
             currentPlayer.ThrowDice(this, 0);
+            AddPlayer(currentPlayer);
         }
     }
 }

@@ -70,22 +70,22 @@ namespace Monopoly
 
             ///Player
             PawnFigure playerFigure = new PawnFigure(bramShape, gold);
-            HumanPlayer player = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
-        
+            HumanPlayer humanPlayer = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
+
             //for(int i = 0; i < board.GetTiles().Count; i++)
             //{
             //    Console.WriteLine(board.GetTiles()[i]);
             //}
 
-            board.AddPlayer(player);
+            board.AddPlayer(humanPlayer);
 
-            Console.WriteLine(player.GetPosition());
+            Console.WriteLine(humanPlayer.GetPosition());
 
             board.NextTurn();
             board.NextTurn();
             board.NextTurn();
 
-            Console.WriteLine(player.GetPosition());
+            Console.WriteLine(humanPlayer.GetPosition());
 
             //Console.WriteLine(board.GetNumberOfOwnables(player));
 
