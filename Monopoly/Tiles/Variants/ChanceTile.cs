@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class Chance : Tile
+    public class ChanceTile : Tile
     {
-        public Chance() : base(new GetChanceCard())
+        public ChanceTile() : base(new GetChanceCard())
         {
         }
     }

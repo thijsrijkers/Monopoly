@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class Tax : Tile
+    public class TaxTile : Tile
     {
-        public Tax() : base(new PayCommand(100))
+        public TaxTile() : base(new PayCommand(100))
         {
         }
     }

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class CommunityChest : Tile
+    public class CommunityChestTile : Tile
     {
-        public CommunityChest() : base(new GetCommunityChestCard())
+        public CommunityChestTile() : base(new GetCommunityChestCard())
         {
         }
     }

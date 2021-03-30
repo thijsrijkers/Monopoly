@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using Monopoly.Tiles.Variants;
+using Monopoly.Card;
+using Monopoly.Command.Commands;
 
 namespace Monopoly
 {
@@ -30,6 +32,7 @@ namespace Monopoly
             }
 
             // Add cards // USE CLONE METHOD TO CREATE MULTIPLES
+            var chance1 = new CardObject(new GetMoneyCommand(400));
 
             // Create more tiles
 
