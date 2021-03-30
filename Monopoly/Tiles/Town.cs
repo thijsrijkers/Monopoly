@@ -19,7 +19,7 @@ namespace Monopoly
             this.price = price;
         }
 
-        public double getPrice()
+        public int getPrice()
         {
             return this.price;
         }
