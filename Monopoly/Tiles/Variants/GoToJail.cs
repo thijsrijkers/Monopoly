@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class StartTile : Tile
+    public class GoToJail : Tile
     {
-        public StartTile() : base(null)
-        {
-
-        }
+        public GoToJail() : base(new JailPlayer()) { }
     }
 }

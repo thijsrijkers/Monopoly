@@ -1,4 +1,5 @@
-﻿using Monopoly.Command.Commands;
+﻿using Monopoly.Command;
+using Monopoly.Command.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class StartTile : Tile
+    public class CommunityChest : Tile
     {
-        public StartTile() : base(null)
+        public CommunityChest() : base(new GetCommunityChestCard())
         {
-
         }
     }
 }
