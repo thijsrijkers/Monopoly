@@ -65,13 +65,8 @@ namespace Monopoly
             ///Creation of board
             Board board = Board.Build(15);
 
-            AggressiveBehaviour boos = new AggressiveBehaviour();
-            NPCPlayer bozeman = new NPCPlayer(board.GetTiles()[0], shipFigure, 1000);
-            bozeman.SwitchBehaviour(boos);
-            board.AddPlayer(bozeman);
-
-            //board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shipFigure, 1000));
-            //board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
+            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shipFigure, 1000));
+            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
 
             ///Player
             PawnFigure playerFigure = new PawnFigure(bramShape, gold);
