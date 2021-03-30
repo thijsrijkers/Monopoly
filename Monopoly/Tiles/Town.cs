@@ -14,7 +14,7 @@ namespace Monopoly
         private int price;
         private PlayerObject owner;
 
-        public Town(int price) : base(new GetMoneyCommand(400))
+        public Town(int price) : base(new BuyCommand())
         {
             this.price = price;
         }

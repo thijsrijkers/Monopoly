@@ -35,7 +35,7 @@ namespace Monopoly.Test
 
             Board board = Board.Build(15);
             board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
-            board.NextTurn();
+            //board.NextTurn();
 
             //Console.Writeline();
             //Assert.AreEqual(playerB.GetMoney(), 1100);
