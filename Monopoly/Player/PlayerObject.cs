@@ -1,5 +1,7 @@
-﻿using Monopoly.Player.Behaviour;
+﻿using Monopoly.Command.Commands;
+using Monopoly.Player.Behaviour;
 using Monopoly.Player.Pawn;
+using System;
 
 namespace Monopoly.Player
 {
@@ -73,6 +75,50 @@ namespace Monopoly.Player
         public int GetMoney()
         {
             return this.money;
+        }
+
+        public void ThrowDice(Board board, int alreadyThrown)
+        {
+            int throwCounter = alreadyThrown;
+
+            Random rnd = new Random();
+
+            int diceOne = rnd.Next(1, 7);
+            int diceTwo = rnd.Next(1, 7);
+
+            throwCounter++;
+
+            int index = board.GetTiles().FindIndex(a => a == GetPosition());
+
+            //Dice throw
+            int amount = index + diceOne + diceTwo;
+            int result = amount >= board.GetTiles().Count ? amount - board.GetTiles().Count : amount;
+
+            SetTile(board.GetTiles()[result]);
+
+
+            if (diceOne != diceTwo)
+            {
+                board.RequeuePlayer(this);
+                GetPosition().ExecuteStand(board, this);
+                return;
+            }
+
+            if (throwCounter > 2)
+            {
+                SendToJail(board);
+                return;
+            }
+
+            GetPosition().ExecuteStand(board, this);
+            ThrowDice(board, throwCounter);
+        }
+
+        public void SendToJail(Board board)
+        {
+            board.RequeuePlayer(this);
+            JailPlayer jailPlayerCommand = new JailPlayer();
+            jailPlayerCommand.Execute(board, this);
         }
     }
 }
