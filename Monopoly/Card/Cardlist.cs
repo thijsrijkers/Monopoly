@@ -29,7 +29,7 @@ namespace Monopoly.Card
             cards = (Queue<CardObject>)cards.Where(x => x != value);
         }
 
-        private void shuffle()
+        public void Shuffle()
         {
             var rng = new Random();
             cards.OrderBy(x => rng.Next());
