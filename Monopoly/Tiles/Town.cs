@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    class Town : Tile, Buildable
+    public class Town : Tile, Buildable
     {
         private int price;
         private PlayerObject owner;

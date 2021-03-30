@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles
 {
-    class Owned : Tile, Buildable
+    public class Owned : Tile, Buildable
     {
         private Buildable tile;
 

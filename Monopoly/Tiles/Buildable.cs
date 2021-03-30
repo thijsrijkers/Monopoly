@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    interface Buildable
+    public interface Buildable
     {
         public int getPrice();
 

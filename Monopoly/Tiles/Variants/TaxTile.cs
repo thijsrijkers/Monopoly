@@ -1,4 +1,5 @@
-﻿using Monopoly.Command.Commands;
+﻿using Monopoly.Command;
+using Monopoly.Command.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Tiles.Variants
 {
-    public class GoToJail : Tile
+    public class Tax : Tile
     {
-        public GoToJail() : base(new JailPlayer()) { }
+        public Tax() : base(new PayCommand(100))
+        {
+        }
     }
 }
