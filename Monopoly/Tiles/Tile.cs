@@ -18,6 +18,10 @@ namespace Monopoly
             this.standCommand = standCommand;
         }
 
+        public void SetCommand(BaseCommand command) {
+            this.standCommand = command;
+        }
+
         public void setName(string name = "Naamloos") // >:O
         {
             this.Name = name;

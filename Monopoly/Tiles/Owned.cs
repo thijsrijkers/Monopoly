@@ -1,4 +1,5 @@
-﻿using Monopoly.Player;
+﻿using Monopoly.Command.Commands;
+using Monopoly.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Monopoly.Tiles
         public Owned(Buildable tile) : base(null)
         {
             this.tile = tile;
+
+            base.SetCommand(new PayCommand(100));
         }
 
         public int getPrice()
@@ -23,7 +26,7 @@ namespace Monopoly.Tiles
 
         public int getAmountOfHouses()
         {
-            return this.tile.getAmountOfHouses() + 0;
+            return this.tile.getAmountOfHouses();
         }
 
         public Boolean hasHotel()
