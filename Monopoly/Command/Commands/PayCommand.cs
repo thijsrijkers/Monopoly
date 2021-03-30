@@ -9,9 +9,16 @@ namespace Monopoly.Command.Commands
 {
     public class PayCommand : BaseCommand
     {
+        private int amount;
+
+        public PayCommand(int amount)
+        {
+            this.amount = amount;
+        }
+
         public void Execute(Board board, PlayerObject executor, PlayerObject target = null)
         {
-            executor.GiveMoneyTo(board, 500, target); // set amount or param?
+            executor.GiveMoneyTo(board, amount, target);
         }
     }
 }
