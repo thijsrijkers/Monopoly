@@ -1,4 +1,5 @@
-﻿using Monopoly.Player;
+﻿using Monopoly.Card;
+using Monopoly.Player;
 using Monopoly.Tiles;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,30 @@ namespace Monopoly
         private List<Tile> tiles;
         private Queue<PlayerObject> players;
         public PlayerObject current;
+        private Cardlist chance;
+        private Cardlist communityChest;
 
         public Board()
         {
             tiles = new List<Tile>();
             players = new Queue<PlayerObject>();
+            this.chance = new Cardlist();
+            this.communityChest = new Cardlist();
         }
+
+        public void AddChanceCard(CardObject card)
+        {
+            chance.AddCard(card);
+        }
+
+        public void AddCommunityChestCard(CardObject card)
+        {
+            communityChest.AddCard(card);
+        }
+
+        public CardObject DrawChanceCard() => chance.DrawCard();
+
+        public CardObject DrawCommunityChestCard() => communityChest.DrawCard();
 
         public List<Tile> GetTiles()
         {
@@ -74,16 +93,11 @@ namespace Monopoly
             players = new Queue<PlayerObject>(players.Where(s => s != value));
         }
 
-        public void RequeuePlayer(PlayerObject value)
-        {
-            players.Dequeue();
-            players.Enqueue(value);
-        }
-
         public void NextTurn()
         {
-            PlayerObject currentPlayer = players.Peek();
+            PlayerObject currentPlayer = players.Dequeue();
             currentPlayer.ThrowDice(this, 0);
+            AddPlayer(currentPlayer);
         }
     }
 }

@@ -13,16 +13,7 @@ namespace Monopoly.Command.Commands
 
         public void Execute(Board board, PlayerObject executor, PlayerObject target = null)
         {
-            Buildable position = (Buildable)executor.GetPosition();
-            int price = position.getPrice();
-            int money = executor.GetMoney();
-
-            if (money >= price)
-            {
-                executor.GiveMoneyToBank(board, price);
-                position = new Owned(position);
-                position.SetOwner(executor);
-            }
+            executor.BuyCurrentTile(board);
         }
     }
 }

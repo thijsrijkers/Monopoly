@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using Monopoly.Tiles.Variants;
+using Monopoly.Card;
+using Monopoly.Command.Commands;
 
 namespace Monopoly
 {
@@ -17,15 +19,22 @@ namespace Monopoly
             // build the board here
             Board board = new Board();
 
+            // Add start tile so we can assign it to players
             Tile startTile = new StartTile();
             board.AddTile(startTile);
 
+            // Generate players
             for (int i = 0; i < housing; i++)
             {
                 var rng = new Random();
                 Buildable tile = new Town(rng.Next(200, 2000));
                 board.AddTile((Tile)tile);
             }
+
+            // Add cards // USE CLONE METHOD TO CREATE MULTIPLES
+            var chance1 = new CardObject(new GetMoneyCommand(400));
+
+            // Create more tiles
 
             return board;
         }
