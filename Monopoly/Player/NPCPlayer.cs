@@ -31,14 +31,20 @@ namespace Monopoly.Player.Behaviour
             Random rnd = new Random();
             int jailChange = rnd.Next(1, 11);
 
-            if (behaviour.prefersJail(this) && jailChange > 6)
+            if (behaviour.prefersJail(this) && jailChange > 5)
             {
                 this.SendToJail(board);
                 return;
             }
 
+            if(behaviour.wantsToRush(this))
+            {
+                base.ThrowDice(board, 0);
+                base.ThrowDice(board, 0);
+                return;
+            }
 
-    
+            base.ThrowDice(board, 0);
         }
 
         public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)

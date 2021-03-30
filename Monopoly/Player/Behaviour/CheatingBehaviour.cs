@@ -17,7 +17,7 @@ namespace Monopoly.Player.Behaviour
 
         public bool acceptsTransactions(NPCPlayer player)
         {
-            int money = player.GetMoney();
+            int money = player.GetMoney() + cheatingAmount;
 
             return true;
         }
