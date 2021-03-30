@@ -44,11 +44,6 @@ namespace Monopoly.Player.Behaviour
             this.behaviour = new CalmBehaviour();
         }
 
-        public void ToggleBehaviour()
-        {
-            
-        }
-
         public override void ThrowDice(Board board, int alreadyThrown)
         {
             SwitchBehaviour(board);
