@@ -26,7 +26,9 @@ namespace Monopoly
         public void ExecuteStand(Board board, PlayerObject target)
         {
             if (standCommand != null)
+            {
                 standCommand.Execute(board, target);
+            }
         }
     }
 }
