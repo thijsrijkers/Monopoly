@@ -12,7 +12,7 @@ namespace Monopoly.Player
         private PawnFigure pawn;
         private int money;
 
-        public PlayerObject(Tile positionValue, PawnFigure pawnValue, int moneyValue)
+        public PlayerObject(PawnFigure pawnValue, int moneyValue)
         {
             this.position = positionValue;
             this.pawn = pawnValue;

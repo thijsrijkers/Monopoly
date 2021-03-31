@@ -11,7 +11,7 @@ namespace Monopoly.Player.Behaviour
     {
         private INPCBehaviour behaviour;
 
-        public NPCPlayer(Tile positionValue, PawnFigure pawnValue, int moneyValue) : base(positionValue, pawnValue, moneyValue)
+        public NPCPlayer(PawnFigure pawnValue, int moneyValue) : base(pawnValue, moneyValue)
         {
             this.behaviour = new CalmBehaviour();
         }

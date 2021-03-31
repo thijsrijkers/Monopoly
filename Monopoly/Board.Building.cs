@@ -32,6 +32,7 @@ namespace Monopoly
                 board.AddTile((Tile)tile);
             }
 
+            player.SetTile(startTile);
             // Generate NPC players
             //TODO
 
