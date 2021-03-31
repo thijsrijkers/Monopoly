@@ -69,8 +69,8 @@ namespace Monopoly
                         for(int i = 0; i < list.Count(); i++)
                         {
                             board.NextTurn();
-                        }
 
+                        }
                         board.NextTurn();
 
                         break;
