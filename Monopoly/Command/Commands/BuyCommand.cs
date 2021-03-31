@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Command.Commands
 {
-    class BuyCommand : BaseCommand
+    public class BuyCommand : BaseCommand
     {
-
         public void Execute(Board board, PlayerObject executor, PlayerObject target = null)
         {
             executor.BuyCurrentTile(board);

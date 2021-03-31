@@ -18,5 +18,7 @@ namespace Monopoly
         public void SetOwner(PlayerObject owner);
 
         public PlayerObject GetOwner();
+
+        public string getName();
     }
 }

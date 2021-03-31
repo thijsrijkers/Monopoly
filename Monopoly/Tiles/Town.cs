@@ -14,9 +14,10 @@ namespace Monopoly
         private int price;
         private PlayerObject owner;
 
-        public Town(int price) : base(new BuyCommand())
+        public Town(string name, int price) : base(new BuyCommand())
         {
             this.price = price;
+            setName(name);
         }
 
         public int getPrice()
@@ -40,6 +41,11 @@ namespace Monopoly
         public PlayerObject GetOwner()
         {
             return this.owner;
+        }
+
+        public override string getName()
+        {
+            return base.getName();
         }
     }
 }

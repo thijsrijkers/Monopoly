@@ -11,7 +11,6 @@ namespace Monopoly
     {
         private List<Tile> tiles;
         private Queue<PlayerObject> players;
-        public PlayerObject current;
         private Cardlist chance;
         private Cardlist communityChest;
 
@@ -21,6 +20,22 @@ namespace Monopoly
             players = new Queue<PlayerObject>();
             this.chance = new Cardlist();
             this.communityChest = new Cardlist();
+        }
+
+        public void UpdateTile(Tile tile)
+        {
+            // Update tile in list
+            Tile old = tiles.First(x => x.getName() == tile.getName());
+            int index = tiles.IndexOf(old);
+            tiles[index] = tile;
+
+            // update tile for players that are on this tile.
+            List<PlayerObject> players = this.players.ToList();
+            foreach(PlayerObject player in players)
+            {
+                if (player.GetPosition() == old)
+                    player.SetTile(tile);
+            }
         }
 
         public void AddChanceCard(CardObject card)
@@ -71,7 +86,6 @@ namespace Monopoly
 
         public void TransactionToAllPlayers(PlayerObject value, int amount)
         {
-
         }
 
         public void TransactionToBank(PlayerObject value)
@@ -104,12 +118,41 @@ namespace Monopoly
             players = new Queue<PlayerObject>(players.Where(s => s != value));
         }
 
-        public void NextTurn()
+        public bool NextTurn()
         {
             PlayerObject currentPlayer = players.Dequeue();
-            currentPlayer.ThrowDice(this, 0);
-            Console.WriteLine(currentPlayer + "  " + currentPlayer.GetPosition().Name);
-            AddPlayer(currentPlayer);
+            if (players.Count() == 0)
+            {
+                Console.WriteLine($"{currentPlayer.GetName()} heeft gewonnen.");
+                return false;
+            }
+            else
+            {
+                currentPlayer.ThrowDice(this, 0);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                string housesHotels = "";
+                var tile = currentPlayer.GetPosition();
+                if (tile.GetType().IsAssignableTo(typeof(Buildable)))
+                {
+                    var buildable = (Buildable)tile;
+                    housesHotels = $", houses: {buildable.getAmountOfHouses()} hotel: {buildable.hasHotel()}";
+                }
+
+                Console.WriteLine($"{currentPlayer.GetName()}: {currentPlayer.GetPosition().getName()}, {currentPlayer.GetMoney()} euro{housesHotels}");
+                Console.ResetColor();
+            }
+
+            if (currentPlayer.GetMoney() > 0)
+                AddPlayer(currentPlayer);
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{currentPlayer.GetName()} is blut, dus doet niet meer mee.");
+                Console.ResetColor();
+            }
+            Console.WriteLine();
+            return true;
         }
     }
 }

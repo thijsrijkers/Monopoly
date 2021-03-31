@@ -17,11 +17,24 @@ namespace Monopoly
     public class Program
     {
         static bool quit = false;
+        static bool hasHumanPlayer = false;
 
         static void Main(string[] args)
         {
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine("Welcome to command line monopoly. Type 'help' for a command listing.");
+
+            string play = "";
+            while (play != "j" && play != "n")
+            {
+                Console.Write("Wil je zelf mee spelen? (j/n) ");
+                play = Console.ReadLine();
+            }
+            hasHumanPlayer = play == "j";
             ///Creation of board
-            Board board = Board.Build(15);
+            Board board = Board.Build(15, hasHumanPlayer);
 
             // ophalen van human player uit board.
             var humanPlayer = board.GetPlayers().FirstOrDefault(x => x.GetType() == typeof(HumanPlayer));
@@ -40,22 +53,44 @@ namespace Monopoly
                             $"Command help:" +
                             $"\n    help: shows command help." +
                             $"\n    quit: quits the program." +
-                            $"\n    throw: Let the player throw his dice when its his turn"
+                            $"\n    throw: Let the player throw his dice when its his turn" +
+                            $"\n    complete: completes game without pauses"
                             );
                         break;
+
                     case "quit":
                         quit = true;
                         Console.WriteLine("Shutting down...");
                         break;
+
                     case "throw":
-                        var list = board.GetPlayers().Where(x => x != humanPlayer);
-                        for(int i = 0; i < list.Count(); i++)
+                    case "":
+                        for(int i = 0; i < board.GetPlayers().Count(); i++)
                         {
                             board.NextTurn();
-
                         }
-                        board.NextTurn();
 
+                        break;
+
+                    case "complete":
+                        bool running = true;
+                        while (running) 
+                        {
+                            Console.WriteLine("--------------------");
+                            for (int i = 0; i < board.GetPlayers().Count(); i++)
+                            {
+                                running = board.NextTurn();
+                            }
+                        }
+                        break;
+
+                    case "reset":
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("--------------------");
+                        Console.WriteLine("Het spel is gereset.");
+                        Console.WriteLine("--------------------");
+                        board = Board.Build(15, hasHumanPlayer);
+                        Console.ResetColor();
                         break;
                 }
             }

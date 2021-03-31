@@ -11,6 +11,7 @@ namespace Monopoly.Tiles.Variants
     {
         public FreeParkingTile() : base(null)
         {
+            setName("Free Parking Tile");
         }
     }
 }

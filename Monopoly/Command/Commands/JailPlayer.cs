@@ -12,7 +12,8 @@ namespace Monopoly.Command.Commands
     {
         public void Execute(Board board, PlayerObject executor, PlayerObject target = null)
         {
-            target.SetTile(board.GetTiles().First(x => x.GetType() == typeof(JailTile)));
+            Console.WriteLine($"{executor.GetName()} ging naar de gevangenis.");
+            executor.SendToJail(board);
         }
     }
 }

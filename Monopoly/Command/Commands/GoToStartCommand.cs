@@ -12,6 +12,7 @@ namespace Monopoly.Command.Commands
     {
         public void Execute(Board board, PlayerObject executer, PlayerObject target = null)
         {
+            Console.WriteLine($"{executer.GetName()} ging terug naar start.");
             var start = board.GetTiles().FirstOrDefault(x => x.GetType() == typeof(StartTile));
             executer.SetTile(start);
         }

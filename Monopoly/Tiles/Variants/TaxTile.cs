@@ -10,8 +10,9 @@ namespace Monopoly.Tiles.Variants
 {
     public class TaxTile : Tile
     {
-        public TaxTile() : base(new PayCommand(100))
+        public TaxTile() : base(new PayBankCommand(100))
         {
+            setName("Tax Tile");
         }
     }
 }

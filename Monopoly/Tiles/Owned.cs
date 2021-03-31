@@ -12,11 +12,9 @@ namespace Monopoly.Tiles
     {
         private Buildable tile;
 
-        public Owned(Buildable tile) : base(null)
+        public Owned(Buildable tile) : base(new PayCommand(tile.getPrice()))
         {
             this.tile = tile;
-
-            base.SetCommand(new PayCommand(100));
         }
 
         public int getPrice()
@@ -43,5 +41,10 @@ namespace Monopoly.Tiles
         {
             return this.tile.GetOwner();
         }
+        public override string getName()
+        {
+            return tile.getName();
+        }
+
     }
 }

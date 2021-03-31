@@ -12,6 +12,7 @@ namespace Monopoly.Tiles.Variants
     {
         public CommunityChestTile() : base(new GetCommunityChestCard())
         {
+            setName("Community Chest Tile");
         }
     }
 }

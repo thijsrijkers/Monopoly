@@ -19,6 +19,7 @@ namespace Monopoly.Command.Commands
 
         public void Execute(Board board, PlayerObject executor, PlayerObject target = null)
         {
+            Console.WriteLine($"{executor.GetName()} kreeg {amount} euro.");
             executor.ReceiveMoney(amount);
         }
     }

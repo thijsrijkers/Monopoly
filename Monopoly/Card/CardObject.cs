@@ -16,6 +16,7 @@ namespace Monopoly.Card
         public CardObject(BaseCommand command, string description = "")
         {
             this.command = command;
+            this.description = description;
         }
 
         public BaseCommand GetCommand()
@@ -30,13 +31,13 @@ namespace Monopoly.Card
 
         public void ExecuteCommand(Board board, PlayerObject target)
         {
-            Console.WriteLine(description);
+            Console.WriteLine($"{target.GetName()} kreeg een kaart: {description}");
             this.command.Execute(board, target);
         }
 
         public CardObject Clone()
         {
-            return new CardObject(this.command);
+            return new CardObject(this.command, this.description);
         }
     }
 }

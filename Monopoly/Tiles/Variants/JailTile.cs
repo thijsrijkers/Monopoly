@@ -11,6 +11,7 @@ namespace Monopoly.Tiles.Variants
     {
         public JailTile() : base(null)
         {
+            setName("Jail Tile");
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Monopoly
 {
     public partial class Board
     {
-        public static Board Build(int housing)
+        public static Board Build(int housing, bool createHuman = true)
         {
             // build the board here
             Board board = new Board();
@@ -24,6 +24,7 @@ namespace Monopoly
             Tile startTile = new StartTile();
             board.AddTile(startTile);
 
+            #region Create Players
             ///Creation of materials and shapes
             Material gold = new Gold();
             Material plastic = new Plastic();
@@ -40,28 +41,24 @@ namespace Monopoly
             PawnFigure playerFigure = new PawnFigure(bramShape, gold);
 
             // creating players, assigning tiles, adding to board.
-            HumanPlayer humanPlayer = new HumanPlayer(playerFigure, 1000);
-            NPCPlayer npc1 = new NPCPlayer(shipFigure, 1000);
-            NPCPlayer npc2 = new NPCPlayer(shoeFigure, 1000);
-            NPCPlayer npc3 = new NPCPlayer(dogFigure, 1000);
+            HumanPlayer humanPlayer = new HumanPlayer(playerFigure, 1000, "Bram");
+            NPCPlayer npc1 = new NPCPlayer(shipFigure, 1000, "NPC 1");
+            NPCPlayer npc2 = new NPCPlayer(shoeFigure, 1000, "NPC 2");
+            NPCPlayer npc3 = new NPCPlayer(dogFigure, 1000, "NPC 3");
 
             humanPlayer.SetTile(startTile);
             npc1.SetTile(startTile);
             npc2.SetTile(startTile);
+            npc3.SetTile(startTile);
 
-            board.AddPlayer(humanPlayer);
+            if(createHuman)
+                board.AddPlayer(humanPlayer);
             board.AddPlayer(npc1);
             board.AddPlayer(npc2);
             board.AddPlayer(npc3);
+            #endregion
 
-            // Generate tiles
-            for (int i = 0; i < housing; i++)
-            {
-                var rng = new Random();
-                Buildable tile = new Town(rng.Next(200, 2000));
-                board.AddTile((Tile)tile);
-            }
-
+            #region Create cards
             // Add cards // USE CLONE METHOD TO CREATE MULTIPLES
             // Get 400
             var card = new CardObject(new GetMoneyCommand(200), "Je hebt de loterij gewonnen. Gezien er bijna niemand mee deed is de jackpot maar 200 euro.");
@@ -70,7 +67,7 @@ namespace Monopoly
                 board.AddChanceCard(card.Clone());
 
             // Pay 200
-            card = new CardObject(new PayCommand(400), "Bij het inparkeren heb je het paaltje van je buurman omgereden. Je buurman weet zeker dat deze 400 euro waard was. Betaal 400 euro.");
+            card = new CardObject(new PayBankCommand(400), "Bij het inparkeren heb je het paaltje van je buurman omgereden. Je buurman weet zeker dat deze 400 euro waard was. Betaal 400 euro.");
             board.AddChanceCard(card);
             for (int i = 0; i < 5; i++)
                 board.AddChanceCard(card.Clone());
@@ -113,7 +110,7 @@ namespace Monopoly
                 board.AddCommunityChestCard(card.Clone());
 
             // pay 1 money
-            card = new CardObject(new PayCommand(1), "Je hebt honger. Je koopt een frikandel van de snackmuur.");
+            card = new CardObject(new PayBankCommand(1), "Je hebt honger. Je koopt een frikandel van de snackmuur.");
             board.AddCommunityChestCard(card);
             for (int i = 0; i < 5; i++)
                 board.AddCommunityChestCard(card.Clone());
@@ -129,7 +126,7 @@ namespace Monopoly
             board.AddCommunityChestCard(card);
 
             // pay 600 money
-            card = new CardObject(new PayCommand(600), "Oei! je staat verkeerd geparkeerd. Je krijgt een boeten van 600 euro.");
+            card = new CardObject(new PayBankCommand(600), "Oei! je staat verkeerd geparkeerd. Je krijgt een boeten van 600 euro.");
             board.AddCommunityChestCard(card);
             for (int i = 0; i < 2; i++)
                 board.AddCommunityChestCard(card.Clone());
@@ -139,9 +136,31 @@ namespace Monopoly
             board.AddCommunityChestCard(card);
             for (int i = 0; i < 10; i++)
                 board.AddCommunityChestCard(card.Clone());
+            #endregion
 
             // Shuffle cards
             board.ShuffleCards();
+
+            #region Create Tiles
+            // Build tiles
+            // START ALREADY EXISTS
+            board.AddTile(new Town("Collegezaal 1.036", 100));
+            board.AddTile(new Town("NSE hoofdkantoor", 200));
+            board.AddTile(new CommunityChestTile());
+            board.AddTile(new JailTile());
+            board.AddTile(new Town("Emmen", 300));
+            board.AddTile(new TaxTile());
+            board.AddTile(new Town("Hardenberg", 400));
+            board.AddTile(new FreeParkingTile());
+            board.AddTile(new Town("Klazienaveen", 500));
+            board.AddTile(new ChanceTile());
+            board.AddTile(new Town("Emmer-Compascuum", 600));
+            board.AddTile(new GoToJailTile());
+            board.AddTile(new Town("Hoogenweg", 700));
+            board.AddTile(new Town("Jan's kantoor", 800));
+            board.AddTile(new Town("Gerjan's kantoor", 900));
+            #endregion
+
             return board;
         }
     }

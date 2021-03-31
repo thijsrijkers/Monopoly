@@ -15,7 +15,7 @@ namespace Monopoly.Player.Behaviour
 
         public bool acceptsTransactions(NPCPlayer player)
         {
-            return false;
+            return new Random().Next(0, 2) == 0; // 50/50 chance to accept
         }
 
         public bool prefersJail(NPCPlayer player)

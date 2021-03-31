@@ -18,6 +18,20 @@ namespace Monopoly.Command.Commands
 
         public void Execute(Board board, PlayerObject executer, PlayerObject target = null)
         {
+            Console.WriteLine($"{executer.GetName()} moest iedereen {amount} betalen.");
+            List<PlayerObject> players = board.GetPlayers().ToList();
+            players.Remove(executer);
+
+            int fullamount = players.Count() * amount;
+            if (executer.GetMoney() <= fullamount)
+            {
+                fullamount = executer.GetMoney();
+            }
+
+            foreach (var player in players)
+            {
+                executer.GiveMoneyTo(board, fullamount / players.Count(), player);
+            }
             board.TransactionToAllPlayers(executer, amount);
         }
     }

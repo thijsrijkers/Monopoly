@@ -10,8 +10,8 @@ namespace Monopoly
 {
     public abstract class Tile
     {
-        public string Name { get; private set; }
-        private BaseCommand standCommand;
+        private string name { get; set; } = "Naamloos";
+        protected BaseCommand standCommand;
 
         public Tile(BaseCommand standCommand)
         {
@@ -24,7 +24,12 @@ namespace Monopoly
 
         public void setName(string name = "Naamloos") // >:O
         {
-            this.Name = name;
+            this.name = name;
+        }
+
+        public virtual string getName()
+        {
+            return this.name;
         }
 
         public void ExecuteStand(Board board, PlayerObject target)

@@ -11,6 +11,7 @@ namespace Monopoly.Command.Commands
     {
         public void Execute(Board board, PlayerObject executer, PlayerObject target = null)
         {
+            Console.WriteLine($"{executer.GetName()} kreeg een Community Chest kaart.");
             var card = board.DrawCommunityChestCard();
             card.ExecuteCommand(board, executer);
         }

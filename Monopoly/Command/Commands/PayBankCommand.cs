@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace Monopoly.Command.Commands
 {
-    public class MoveCommand : BaseCommand
+    public class PayBankCommand : BaseCommand
     {
-        private int steps;
-        public MoveCommand(int steps)
+        private int amount;
+
+        public PayBankCommand(int amount)
         {
-            this.steps = steps;
+            this.amount = amount;
         }
 
         public void Execute(Board board, PlayerObject executer, PlayerObject target = null)
         {
-            Console.WriteLine($"{executer.GetName()} moest {steps} stappen zetten.");
-            executer.Move(board, steps);
+            Console.WriteLine($"{executer.GetName()} moest de bank {amount} betalen.");
+            executer.GiveMoneyToBank(board, amount);
         }
     }
 }

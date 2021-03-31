@@ -11,7 +11,7 @@ namespace Monopoly.Player.Behaviour
     {
         private INPCBehaviour behaviour;
 
-        public NPCPlayer(PawnFigure pawnValue, int moneyValue) : base(pawnValue, moneyValue)
+        public NPCPlayer(PawnFigure pawnValue, int moneyValue, string name) : base(pawnValue, moneyValue, name)
         {
             this.behaviour = new CalmBehaviour();
         }
@@ -53,6 +53,7 @@ namespace Monopoly.Player.Behaviour
 
             if (behaviour.prefersJail(this) && jailChange > 5)
             {
+                Console.WriteLine($"{GetName()} leek het een beter idee om vrijwillig naar de gevangenis te gaan.");
                 this.SendToJail(board);
                 return;
             }
@@ -60,7 +61,9 @@ namespace Monopoly.Player.Behaviour
             if(behaviour.wantsToRush(this))
             {
                 base.ThrowDice(board, 0);
-                base.ThrowDice(board, 0);
+                Console.WriteLine($"{GetName()} gooide stiekem nog een keer.");
+                if(board.GetPlayers().Contains(this))
+                    base.ThrowDice(board, 0);
                 return;
             }
 
@@ -75,6 +78,10 @@ namespace Monopoly.Player.Behaviour
             {
                 base.GiveMoneyTo(board, value, otherPlayer);
             }
+            else
+            {
+                Console.WriteLine($"{GetName()} weigerde te betalen aan {otherPlayer.GetName()}.");
+            }
         }
 
         public override void GiveMoneyToBank(Board board, int value) {
@@ -83,6 +90,10 @@ namespace Monopoly.Player.Behaviour
             if (accepts)
             {
                 base.GiveMoneyToBank(board, value);
+            }
+            else
+            {
+                Console.WriteLine($"{GetName()} weigerde te betalen aan de bank.");
             }
         }
 

@@ -12,6 +12,7 @@ namespace Monopoly.Tiles.Variants
     {
         public ChanceTile() : base(new GetChanceCard())
         {
+            setName("Chance Tile");
         }
     }
 }

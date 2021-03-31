@@ -11,7 +11,7 @@ namespace Monopoly.Tiles.Variants
     {
         public StartTile() : base(null)
         {
-
+            setName("Start Tile");
         }
     }
 }

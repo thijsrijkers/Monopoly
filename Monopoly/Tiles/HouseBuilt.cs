@@ -1,4 +1,5 @@
-﻿using Monopoly.Player;
+﻿using Monopoly.Command.Commands;
+using Monopoly.Player;
 using Monopoly.Tiles;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Monopoly
     {
         private Buildable tile;
 
-        public HouseBuilt(Buildable tile) : base(null)
+        public HouseBuilt(Buildable tile) : base(new PayCommand(tile.getPrice()))
         {
             this.tile = tile;
         }
@@ -38,6 +39,11 @@ namespace Monopoly
         public PlayerObject GetOwner()
         {
             return this.tile.GetOwner();
+        }
+
+        public override string getName()
+        {
+            return tile.getName();
         }
     }
 }

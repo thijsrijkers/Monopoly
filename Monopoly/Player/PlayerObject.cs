@@ -2,7 +2,9 @@
 using Monopoly.Player.Behaviour;
 using Monopoly.Player.Pawn;
 using Monopoly.Tiles;
+using Monopoly.Tiles.Variants;
 using System;
+using System.Linq;
 
 namespace Monopoly.Player
 {
@@ -11,11 +13,19 @@ namespace Monopoly.Player
         private Tile position;
         private PawnFigure pawn;
         private int money;
+        private bool jailed = false;
+        private string name;
 
-        public PlayerObject(PawnFigure pawnValue, int moneyValue)
+        public PlayerObject(PawnFigure pawnValue, int moneyValue, string name)
         {
             this.pawn = pawnValue;
             this.money = moneyValue;
+            this.name = name;
+        }
+
+        public string GetName()
+        {
+            return name;
         }
 
         /// <summary>
@@ -101,53 +111,58 @@ namespace Monopoly.Player
 
         public virtual void ThrowDice(Board board, int alreadyThrown)
         {
-            int throwCounter = alreadyThrown;
-
-            Random rnd = new Random();
-
-            int diceOne = rnd.Next(1, 7);
-            int diceTwo = rnd.Next(1, 7);
-
-            throwCounter++;
-
-            int index = board.GetTiles().FindIndex(a => a == GetPosition());
-
-            //Dice throw
-            int amount = index + diceOne + diceTwo;
-            int result = amount >= board.GetTiles().Count ? amount - board.GetTiles().Count : amount;
-
-            SetTile(board.GetTiles()[result]);
-
-
-            if (diceOne != diceTwo)
+            if (!jailed)
             {
+                int throwCounter = alreadyThrown;
+
+                Random rnd = new Random();
+
+                int diceOne = rnd.Next(1, 7);
+                int diceTwo = rnd.Next(1, 7);
+
+                throwCounter++;
+
+                int index = board.GetTiles().FindIndex(a => a == GetPosition());
+
+                //Dice throw
+                int amount = index + diceOne + diceTwo;
+                int result = amount >= board.GetTiles().Count ? amount - board.GetTiles().Count : amount;
+
+                SetTile(board.GetTiles()[result]);
+
+
+                if (diceOne != diceTwo)
+                {
+                    GetPosition().ExecuteStand(board, this);
+                    return;
+                }
+
+                if (throwCounter > 2)
+                {
+                    SendToJail(board);
+                    return;
+                }
+
                 GetPosition().ExecuteStand(board, this);
-                return;
+                ThrowDice(board, throwCounter);
             }
-
-            if (throwCounter > 2)
-            {
-                SendToJail(board);
-                return;
-            }
-
-            GetPosition().ExecuteStand(board, this);
-            ThrowDice(board, throwCounter);
+            jailed = false;
         }
 
         public void SendToJail(Board board)
         {
-            JailPlayer jailPlayerCommand = new JailPlayer();
-            jailPlayerCommand.Execute(board, this);
+            SetTile(board.GetTiles().First(x => x.GetType() == typeof(JailTile)));
+            jailed = true;
         }
 
-        public void BuyCurrentTile(Board board)
+        public virtual void BuyCurrentTile(Board board)
         {
             Buildable position = (Buildable)this.GetPosition();
             int price = position.getPrice();
 
             if (this.money >= price)
             {
+                Console.WriteLine($"{GetName()} heeft {this.GetPosition().getName()} gekocht.");
                 this.money -= price;
                 position = new Owned(position);
                 position.SetOwner(this);
@@ -159,12 +174,19 @@ namespace Monopoly.Player
                 {
                     position = new HotelBuilt(position);
                 }
-                else if(rdm < 5)
+                else if (rdm < 5)
                 {
-                    for (int i = 0; i < rdm ; i++) {
+                    for (int i = 0; i < rdm; i++)
+                    {
                         position = new HouseBuilt(position);
                     }
                 }
+
+                board.UpdateTile((Tile)position);
+            }
+            else
+            {
+                Console.WriteLine($"{GetName()} probeerde {position.getName()} te kopen, maar had niet genoeg geld.");
             }
         }
     }

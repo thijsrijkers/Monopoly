@@ -9,6 +9,9 @@ namespace Monopoly.Tiles.Variants
 {
     public class GoToJailTile : Tile
     {
-        public GoToJailTile() : base(new JailPlayer()) { }
+        public GoToJailTile() : base(new JailPlayer()) 
+        {
+            setName("Go To Jail Tile");
+        }
     }
 }
