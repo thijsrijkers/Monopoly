@@ -23,6 +23,9 @@ namespace Monopoly
             ///Creation of board
             Board board = Board.Build(15);
 
+            // ophalen van human player uit board.
+            var humanPlayer = board.GetPlayers().FirstOrDefault(x => x.GetType() == typeof(HumanPlayer));
+
             while (!quit)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
