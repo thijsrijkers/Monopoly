@@ -35,13 +35,13 @@ namespace Monopoly
 
             ///Player
             PawnFigure playerFigure = new PawnFigure(bramShape, gold);
-            HumanPlayer humanPlayer = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
+            HumanPlayer humanPlayer = new HumanPlayer(playerFigure, 1000);
 
             ///Creation of board
             Board board = Board.Build(15, humanPlayer);
 
-            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shipFigure, 1000));
-            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
+            board.AddPlayer(new NPCPlayer(shipFigure, 1000));
+            board.AddPlayer(new NPCPlayer(shoeFigure, 1000));
 
             while (!quit)
             {
