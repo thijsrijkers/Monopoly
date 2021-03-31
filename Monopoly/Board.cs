@@ -108,6 +108,7 @@ namespace Monopoly
         {
             PlayerObject currentPlayer = players.Dequeue();
             currentPlayer.ThrowDice(this, 0);
+            Console.WriteLine(currentPlayer + "  " + currentPlayer.GetPosition().Name);
             AddPlayer(currentPlayer);
         }
     }
