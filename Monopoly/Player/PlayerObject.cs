@@ -151,6 +151,20 @@ namespace Monopoly.Player
                 this.money -= price;
                 position = new Owned(position);
                 position.SetOwner(this);
+
+                //randomly assign a hotel or a few houses.
+                int rdm = new Random().Next(1, 10);
+
+                if (rdm == 5)
+                {
+                    position = new HotelBuilt(position);
+                }
+                else if(rdm < 5)
+                {
+                    for (int i = 0; i < rdm ; i++) {
+                        position = new HouseBuilt(position);
+                    }
+                }
             }
         }
     }
