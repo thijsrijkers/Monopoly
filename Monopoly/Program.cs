@@ -65,8 +65,8 @@ namespace Monopoly
                         Console.WriteLine("Shutting down...");
                         break;
                     case "throw":
- 
-                        foreach(PlayerObject current in board.GetPlayers().Where(x => x != humanPlayer))
+                        var list = board.GetPlayers().Where(x => x != humanPlayer);
+                        for(int i = 0; i < list.Count(); i++)
                         {
                             board.NextTurn();
                         }
