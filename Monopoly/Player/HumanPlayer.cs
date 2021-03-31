@@ -9,7 +9,7 @@ namespace Monopoly.Player
 {
     public class HumanPlayer : PlayerObject
     {
-        public HumanPlayer(Tile positionValue, PawnFigure pawnValue, int moneyValue) : base(positionValue, pawnValue, moneyValue)
+        public HumanPlayer(PawnFigure pawnValue, int moneyValue) : base(pawnValue, moneyValue)
         {
         }
     }
