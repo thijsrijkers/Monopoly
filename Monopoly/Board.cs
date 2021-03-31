@@ -93,6 +93,10 @@ namespace Monopoly
             players = new Queue<PlayerObject>(players.Where(s => s != value));
         }
 
+        public Queue<PlayerObject> GetPlayers() {
+            return players;
+        }
+
         public void NextTurn()
         {
             PlayerObject currentPlayer = players.Dequeue();
