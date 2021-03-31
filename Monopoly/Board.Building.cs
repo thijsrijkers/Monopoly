@@ -15,7 +15,7 @@ namespace Monopoly
 {
     public partial class Board
     {
-        public static Board Build(int housing, HumanPlayer player)
+        public static Board Build(int housing)
         {
             // build the board here
             Board board = new Board();
@@ -24,6 +24,36 @@ namespace Monopoly
             Tile startTile = new StartTile();
             board.AddTile(startTile);
 
+            ///Creation of materials and shapes
+            Material gold = new Gold();
+            Material plastic = new Plastic();
+            Material wood = new Wood();
+            PawnShape bramShape = PawnShape.BramShape;
+            PawnShape shoe = PawnShape.Shoe;
+            PawnShape ship = PawnShape.Battleship;
+            PawnShape dog = PawnShape.Dog;
+
+            // Creation of figures
+            PawnFigure shipFigure = new PawnFigure(ship, plastic);
+            PawnFigure shoeFigure = new PawnFigure(shoe, wood);
+            PawnFigure dogFigure = new PawnFigure(dog, gold);
+            PawnFigure playerFigure = new PawnFigure(bramShape, gold);
+
+            // creating players, assigning tiles, adding to board.
+            HumanPlayer humanPlayer = new HumanPlayer(playerFigure, 1000);
+            NPCPlayer npc1 = new NPCPlayer(shipFigure, 1000);
+            NPCPlayer npc2 = new NPCPlayer(shoeFigure, 1000);
+            NPCPlayer npc3 = new NPCPlayer(dogFigure, 1000);
+
+            humanPlayer.SetTile(startTile);
+            npc1.SetTile(startTile);
+            npc2.SetTile(startTile);
+
+            board.AddPlayer(humanPlayer);
+            board.AddPlayer(npc1);
+            board.AddPlayer(npc2);
+            board.AddPlayer(npc3);
+
             // Generate tiles
             for (int i = 0; i < housing; i++)
             {
@@ -31,9 +61,6 @@ namespace Monopoly
                 Buildable tile = new Town(rng.Next(200, 2000));
                 board.AddTile((Tile)tile);
             }
-
-            // Generate NPC players
-            //TODO
 
             // Add cards // USE CLONE METHOD TO CREATE MULTIPLES
             // Get 400
@@ -115,9 +142,6 @@ namespace Monopoly
 
             // Shuffle cards
             board.ShuffleCards();
-
-            // Create more tiles
-
             return board;
         }
     }

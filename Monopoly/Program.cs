@@ -20,28 +20,8 @@ namespace Monopoly
 
         static void Main(string[] args)
         {
-
-            ///Creation of materials and shapes
-            Material gold = new Gold();
-            Material plastic = new Plastic();
-            Material wood = new Wood();
-
-            PawnShape bramShape = PawnShape.BramShape;
-            PawnShape shoe = PawnShape.Shoe;
-            PawnShape ship = PawnShape.Battleship;
-
-            PawnFigure shipFigure = new PawnFigure(ship, plastic);
-            PawnFigure shoeFigure = new PawnFigure(shoe, wood);
-
-            ///Player
-            PawnFigure playerFigure = new PawnFigure(bramShape, gold);
-            HumanPlayer humanPlayer = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
-
             ///Creation of board
-            Board board = Board.Build(15, humanPlayer);
-
-            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shipFigure, 1000));
-            board.AddPlayer(new NPCPlayer(board.GetTiles()[0], shoeFigure, 1000));
+            Board board = Board.Build(15);
 
             while (!quit)
             {
@@ -65,8 +45,8 @@ namespace Monopoly
                         Console.WriteLine("Shutting down...");
                         break;
                     case "throw":
- 
-                        foreach(PlayerObject current in board.GetPlayers().Where(x => x != humanPlayer))
+                        var list = board.GetPlayers().Where(x => x != humanPlayer);
+                        for(int i = 0; i < list.Count(); i++)
                         {
                             board.NextTurn();
                         }
