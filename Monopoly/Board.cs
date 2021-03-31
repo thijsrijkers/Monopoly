@@ -33,6 +33,12 @@ namespace Monopoly
             communityChest.AddCard(card);
         }
 
+        public void ShuffleCards()
+        {
+            chance.Shuffle();
+            communityChest.Shuffle();
+        }
+
         public CardObject DrawChanceCard() => chance.DrawCard();
 
         public CardObject DrawCommunityChestCard() => communityChest.DrawCard();
@@ -71,6 +77,11 @@ namespace Monopoly
         public void TransactionToBank(PlayerObject value)
         {
 
+        }
+
+        public Queue<PlayerObject> GetPlayers()
+        {
+            return players;
         }
 
         public void AddTile(Tile value)

@@ -7,6 +7,7 @@ using Monopoly.Player.Pawn;
 using Monopoly.Tiles.Variants;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 [assembly:InternalsVisibleTo("Monopoly.Test")] // Ensure internals are visible to test project
@@ -15,40 +16,10 @@ namespace Monopoly
 {
     public class Program
     {
+        static bool quit = false;
+
         static void Main(string[] args)
         {
-            //Start
-            //Gevangenis
-            //GoToJail
-            //kans
-            //Algemeen fonds
-            //belasting
-            //Free parking
-
-            Buildable town = new Town(10);
-            town = new HouseBuilt(town);
-            town = new HouseBuilt(town);
-            town = new HouseBuilt(town);
-            town = new HouseBuilt(town);
-            town = new HotelBuilt(town); //Hotel 
-
-            //Console.WriteLine(town.getPrice());
-            //Console.WriteLine(town.getAmountOfHouses());
-            //Console.WriteLine(town.hasHotel());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             ///Creation of materials and shapes
             Material gold = new Gold();
@@ -71,39 +42,41 @@ namespace Monopoly
             ///Player
             PawnFigure playerFigure = new PawnFigure(bramShape, gold);
             HumanPlayer humanPlayer = new HumanPlayer(board.GetTiles()[0], playerFigure, 1000);
-
-            //for(int i = 0; i < board.GetTiles().Count; i++)
-            //{
-            //    Console.WriteLine(board.GetTiles()[i]);
-            //}
-
             board.AddPlayer(humanPlayer);
 
-            Console.WriteLine(humanPlayer.GetPosition());
+            while (!quit)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("> ");
+                var cmd = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.White;
 
-            board.NextTurn();
-            board.NextTurn();
-            board.NextTurn();
+                switch (cmd)
+                {
+                    case "help":
+                        Console.WriteLine(
+                            $"Command help:" +
+                            $"\n    help: shows command help." +
+                            $"\n    quit: quits the program." +
+                            $"\n    throw: Let the player throw his dice when its his turn"
+                            );
+                        break;
+                    case "quit":
+                        quit = true;
+                        Console.WriteLine("Shutting down...");
+                        break;
+                    case "throw":
+ 
+                        foreach(PlayerObject current in board.GetPlayers().Where(x => x != humanPlayer))
+                        {
+                            board.NextTurn();
+                        }
 
-            Console.WriteLine(humanPlayer.GetPosition());
+                        board.NextTurn();
 
-            //Console.WriteLine(board.GetNumberOfOwnables(player));
-
-
-
-
-
-
-
-            Cardlist fundCards = new Cardlist();
-            JailPlayer jailPlayerCommand = new JailPlayer();
-            CardObject card = new CardObject(jailPlayerCommand);
-
-            fundCards.AddCard(card);
-
-            Cardlist chanceCards = (Cardlist)fundCards.Clone();
-
-            fundCards.RemoveCard(card);
+                        break;
+                }
+            }
         }
     }
 }
