@@ -14,7 +14,6 @@ namespace Monopoly.Player
 
         public PlayerObject(PawnFigure pawnValue, int moneyValue)
         {
-            this.position = positionValue;
             this.pawn = pawnValue;
             this.money = moneyValue;
         }
