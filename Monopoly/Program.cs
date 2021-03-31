@@ -20,28 +20,8 @@ namespace Monopoly
 
         static void Main(string[] args)
         {
-
-            ///Creation of materials and shapes
-            Material gold = new Gold();
-            Material plastic = new Plastic();
-            Material wood = new Wood();
-
-            PawnShape bramShape = PawnShape.BramShape;
-            PawnShape shoe = PawnShape.Shoe;
-            PawnShape ship = PawnShape.Battleship;
-
-            PawnFigure shipFigure = new PawnFigure(ship, plastic);
-            PawnFigure shoeFigure = new PawnFigure(shoe, wood);
-
-            ///Player
-            PawnFigure playerFigure = new PawnFigure(bramShape, gold);
-            HumanPlayer humanPlayer = new HumanPlayer(playerFigure, 1000);
-
             ///Creation of board
-            Board board = Board.Build(15, humanPlayer);
-
-            board.AddPlayer(new NPCPlayer(shipFigure, 1000));
-            board.AddPlayer(new NPCPlayer(shoeFigure, 1000));
+            Board board = Board.Build(15);
 
             while (!quit)
             {
