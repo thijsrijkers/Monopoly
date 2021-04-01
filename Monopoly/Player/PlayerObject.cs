@@ -15,6 +15,7 @@ namespace Monopoly.Player
         private int money;
         private bool jailed = false;
         private string name;
+        private const int MONEYCAP = 5000;
 
         public PlayerObject(PawnFigure pawnValue, int moneyValue, string name)
         {
@@ -46,7 +47,10 @@ namespace Monopoly.Player
         public virtual void ReceiveMoney(int value) => receiveMoney(value);
         internal void receiveMoney(int value)
         {
-            this.money += value;
+            if (this.money < MONEYCAP)
+            {
+                this.money += value;
+            }
         }
 
         /// <summary>
@@ -141,7 +145,10 @@ namespace Monopoly.Player
                 while(amount >= board.GetTiles().Count) // Imagine, you can magically throw enough to pass start multiple times
                 {
                     Console.WriteLine($"{GetName()} kwam langs start en kreeg 200 euro.");
-                    money += 200;
+                    if(money < MONEYCAP)
+                    {
+                        money += 200;
+                    }
                     amount -= board.GetTiles().Count;
                 }
 
