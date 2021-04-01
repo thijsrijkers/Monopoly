@@ -119,6 +119,15 @@ namespace Monopoly
             players = new Queue<PlayerObject>(players.Where(s => s != value));
         }
 
+        public void PrintStatus()
+        {
+            var buildables = tiles.Where(x => x.GetType().IsAssignableTo(typeof(Buildable))).Cast<Buildable>();
+            foreach (var player in players)
+            {
+                Console.WriteLine($"{player.GetName()} owns {string.Join(", ", buildables.Where(x => x.GetOwner() == player).Select(x => x.getName()))}");
+            }
+        }
+
         public bool NextTurn()
         {
             PlayerObject currentPlayer = players.Dequeue();

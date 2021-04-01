@@ -54,8 +54,13 @@ namespace Monopoly
                             $"\n    help: laat command help zien." +
                             $"\n    quit: sluit het programma." +
                             $"\n    throw: laat de speler gooien. Wordt ook uitgevoerd bij een leeg command (enter)." +
-                            $"\n    complete: maakt het spel af zonder pauzes, behalve wanneer player input nodig is."
+                            $"\n    complete: maakt het spel af zonder pauzes, behalve wanneer player input nodig is." +
+                            $"\n    status: laat zien welke tiles bezit worden door welke spelers."
                             );
+                        break;
+
+                    case "status":
+                        board.PrintStatus();
                         break;
 
                     case "quit":
