@@ -182,7 +182,7 @@ namespace Monopoly.Player
                     }
                 }
 
-                board.UpdateTile((Tile)position);
+                board.UpdateTile(position);
             }
             else
             {

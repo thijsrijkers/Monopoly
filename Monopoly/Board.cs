@@ -22,19 +22,20 @@ namespace Monopoly
             this.communityChest = new Cardlist();
         }
 
-        public void UpdateTile(Tile tile)
+        public void UpdateTile(Buildable tile)
         {
             // Update tile in list
             Tile old = tiles.First(x => x.getName() == tile.getName());
             int index = tiles.IndexOf(old);
-            tiles[index] = tile;
+            tiles[index] = (Tile)tile;
 
             // update tile for players that are on this tile.
             List<PlayerObject> players = this.players.ToList();
+            players.Add(tile.GetOwner()); // Owner is at this moment not in the queue.
             foreach(PlayerObject player in players)
             {
                 if (player.GetPosition() == old)
-                    player.SetTile(tile);
+                    player.SetTile((Tile)tile);
             }
         }
 
