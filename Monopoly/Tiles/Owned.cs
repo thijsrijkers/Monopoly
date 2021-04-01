@@ -46,5 +46,9 @@ namespace Monopoly.Tiles
             return tile.getName();
         }
 
+        public Town GetTown()
+        {
+            return tile.GetTown();
+        }
     }
 }

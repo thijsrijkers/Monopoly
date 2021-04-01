@@ -15,7 +15,7 @@ namespace Monopoly.Player
 
         public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
         {
-            if (GetResponse($"Betalen aan {otherPlayer.GetName()}?"))
+            if (GetResponse($"{value} euro betalen aan {otherPlayer.GetName()}? (je hebt {GetMoney()} euro)"))
                 base.GiveMoneyTo(board, value, otherPlayer);
             else
                 Console.WriteLine($"Je weigerde te betalen aan {otherPlayer.GetName()}");
@@ -33,7 +33,7 @@ namespace Monopoly.Player
         public bool GetResponse(string question)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{question}>");
+            Console.Write($"{question} (ja/nee)>");
             Console.ForegroundColor = ConsoleColor.White;
             string response = Console.ReadLine();
             if (response.Length > 0)

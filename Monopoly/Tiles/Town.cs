@@ -47,5 +47,10 @@ namespace Monopoly
         {
             return base.getName();
         }
+
+        public Town GetTown()
+        {
+            return this;
+        }
     }
 }

@@ -120,6 +120,8 @@ namespace Monopoly.Player
                 int diceOne = rnd.Next(1, 7);
                 int diceTwo = rnd.Next(1, 7);
 
+                Console.WriteLine($"{GetName()} gooide {diceOne} en {diceTwo}.");
+
                 throwCounter++;
 
                 int index = board.GetTiles().FindIndex(a => a == GetPosition());

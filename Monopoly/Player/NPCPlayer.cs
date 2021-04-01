@@ -60,14 +60,13 @@ namespace Monopoly.Player.Behaviour
 
             if(behaviour.wantsToRush(this))
             {
-                base.ThrowDice(board, 0);
+                base.ThrowDice(board, alreadyThrown);
                 Console.WriteLine($"{GetName()} gooide stiekem nog een keer.");
-                if(board.GetPlayers().Contains(this))
-                    base.ThrowDice(board, 0);
+                base.ThrowDice(board, alreadyThrown);
                 return;
             }
 
-            base.ThrowDice(board, 0);
+            base.ThrowDice(board, alreadyThrown);
         }
 
         public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)

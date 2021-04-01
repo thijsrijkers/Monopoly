@@ -150,6 +150,14 @@ namespace Monopoly
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"{currentPlayer.GetName()} is blut, dus doet niet meer mee.");
+                List<Buildable> buildables = tiles.Where(x => x.GetType().IsAssignableTo(typeof(Buildable))).Cast<Buildable>().ToList();
+                buildables = buildables.Where(x => x.GetOwner() == currentPlayer).ToList();
+                Console.WriteLine($"De volgende towns zijn vrij gekomen: {string.Join(", ", buildables.Select(x => x.getName()))}");
+                // Update tiles owned by this player to become regular towns again.
+                foreach(var buildable in buildables)
+                {
+                    UpdateTile(buildable.GetTown());
+                }
                 Console.ResetColor();
             }
             Console.WriteLine();

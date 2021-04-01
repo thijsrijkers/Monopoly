@@ -20,5 +20,7 @@ namespace Monopoly
         public PlayerObject GetOwner();
 
         public string getName();
+
+        public Town GetTown();
     }
 }
