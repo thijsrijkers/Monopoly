@@ -15,7 +15,7 @@ namespace Monopoly.Player
         private int money;
         private bool jailed = false;
         private string name;
-        private const int MONEYCAP = 5000;
+        private const int MONEYCAP = 2000;
 
         public PlayerObject(PawnFigure pawnValue, int moneyValue, string name)
         {
