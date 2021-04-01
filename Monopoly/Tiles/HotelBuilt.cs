@@ -19,7 +19,7 @@ namespace Monopoly
 
         public int getPrice()
         {
-            return this.tile.getPrice() + 100;
+            return this.tile.getPrice() + 150;
         }
 
         public int getAmountOfHouses()
