@@ -30,7 +30,7 @@ namespace Monopoly.Command.Commands
                     if (owner != null && executor != owner)
                     {
                         Console.WriteLine($"{executor.GetName()} moest {owner.GetName()} {amount} euro betalen.");
-                        executor.GiveMoneyTo(board, amount, owner);
+                        executor.GiveMoneyTo(amount, owner);
                     }
                 }
             }
@@ -39,7 +39,7 @@ namespace Monopoly.Command.Commands
                 if (executor != target)
                 {
                     Console.WriteLine($"{executor.GetName()} moest {target.GetName()} {amount} euro betalen.");
-                    executor.GiveMoneyTo(board, amount, target);
+                    executor.GiveMoneyTo(amount, target);
                 }
             }
         }

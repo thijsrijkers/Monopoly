@@ -19,7 +19,7 @@ namespace Monopoly.Command.Commands
         public void Execute(Board board, PlayerObject executer, PlayerObject target = null)
         {
             Console.WriteLine($"{executer.GetName()} moest de bank {amount} betalen.");
-            executer.GiveMoneyToBank(board, amount);
+            executer.GiveMoneyToBank(amount);
         }
     }
 }

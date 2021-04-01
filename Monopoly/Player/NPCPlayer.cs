@@ -11,25 +11,25 @@ namespace Monopoly.Player.Behaviour
     {
         private INPCBehaviour behaviour;
 
-        public NPCPlayer(PawnFigure pawnValue, int moneyValue, string name) : base(pawnValue, moneyValue, name)
+        public NPCPlayer(Board board, PawnFigure pawnValue, int moneyValue, string name) : base(pawnValue, moneyValue, name)
         {
-            this.behaviour = new CalmBehaviour();
+            this.behaviour = new CalmBehaviour(board);
         }
 
         public void SwitchBehaviour(Board board)
         {
             Random rnd = new Random();
             bool isCheating = rnd.Next(1, 11) == 5;
-            
-            if(isCheating)
+
+            if (isCheating)
             {
-                this.behaviour = new CheatingBehaviour();
+                this.behaviour = new CheatingBehaviour(board);
                 return;
             }
 
             if (this.GetMoney() < 200)
             {
-                this.behaviour = new ShyBehaviour();
+                this.behaviour = new ShyBehaviour(board);
                 return;
             }
 
@@ -37,73 +37,39 @@ namespace Monopoly.Player.Behaviour
 
             if (index < (board.GetTiles().Count / 4))
             {
-                this.behaviour = new AggressiveBehaviour();
+                this.behaviour = new AggressiveBehaviour(board);
                 return;
             }
 
-            this.behaviour = new CalmBehaviour();
+            this.behaviour = new CalmBehaviour(board);
         }
 
         public override void ThrowDice(Board board, int alreadyThrown)
         {
+            INPCBehaviour oldBehaviour = behaviour;
             SwitchBehaviour(board);
-
-            Random rnd = new Random();
-            int jailChange = rnd.Next(1, 11);
-
-            if (behaviour.prefersJail(this) && jailChange > 5)
+            if(oldBehaviour.GetType() != behaviour.GetType())
             {
-                Console.WriteLine($"{GetName()} leek het een beter idee om vrijwillig naar de gevangenis te gaan.");
-                this.SendToJail(board);
-                return;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine($"{GetName()} switchte naar {behaviour.GetType().ToString().Split('.').Last()}");
+                Console.ResetColor();
             }
-
-            if(behaviour.wantsToRush(this))
-            {
-                base.ThrowDice(board, alreadyThrown);
-                Console.WriteLine($"{GetName()} gooide stiekem nog een keer.");
-                base.ThrowDice(board, alreadyThrown);
-                return;
-            }
-
-            base.ThrowDice(board, alreadyThrown);
+            behaviour.ThrowDice(this, alreadyThrown);
         }
 
-        public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
+        public override void GiveMoneyTo(int value, PlayerObject otherPlayer)
         {
-            bool accepts = behaviour.acceptsTransactions(this);
-
-            if (accepts) 
-            {
-                base.GiveMoneyTo(board, value, otherPlayer);
-            }
-            else
-            {
-                Console.WriteLine($"{GetName()} weigerde te betalen aan {otherPlayer.GetName()}.");
-            }
+            behaviour.PayAmount(this, otherPlayer, value);
         }
 
-        public override void GiveMoneyToBank(Board board, int value) {
-            bool accepts = behaviour.acceptsTransactions(this);
-
-            if (accepts)
-            {
-                base.GiveMoneyToBank(board, value);
-            }
-            else
-            {
-                Console.WriteLine($"{GetName()} weigerde te betalen aan de bank.");
-            }
-        }
-
-        public void BuyCurrentTile(Board board)
+        public override void GiveMoneyToBank(int value)
         {
-            bool accepts = behaviour.acceptsTransactions(this);
+            behaviour.PayBank(this, value);
+        }
 
-            if (accepts) 
-            {
-                base.BuyCurrentTile(board);
-            }
+        public override void BuyCurrentTile(Board board)
+        {
+            behaviour.BuyCurrentTile(this);
         }
 
     }

@@ -13,10 +13,10 @@ namespace Monopoly.Player
         {
         }
 
-        public override void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
+        public override void GiveMoneyTo(int value, PlayerObject otherPlayer)
         {
             if (GetResponse($"{value} euro betalen aan {otherPlayer.GetName()}? (je hebt {GetMoney()} euro)"))
-                base.GiveMoneyTo(board, value, otherPlayer);
+                base.GiveMoneyTo(value, otherPlayer);
             else
                 Console.WriteLine($"Je weigerde te betalen aan {otherPlayer.GetName()}");
         }

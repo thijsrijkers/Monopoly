@@ -42,9 +42,9 @@ namespace Monopoly
 
             // creating players, assigning tiles, adding to board.
             HumanPlayer humanPlayer = new HumanPlayer(playerFigure, 1000, "Bram");
-            NPCPlayer npc1 = new NPCPlayer(shipFigure, 1000, "NPC 1");
-            NPCPlayer npc2 = new NPCPlayer(shoeFigure, 1000, "NPC 2");
-            NPCPlayer npc3 = new NPCPlayer(dogFigure, 1000, "NPC 3");
+            NPCPlayer npc1 = new NPCPlayer(board, shipFigure, 1000, "NPC 1");
+            NPCPlayer npc2 = new NPCPlayer(board, shoeFigure, 1000, "NPC 2");
+            NPCPlayer npc3 = new NPCPlayer(board, dogFigure, 1000, "NPC 3");
 
             humanPlayer.SetTile(startTile);
             npc1.SetTile(startTile);

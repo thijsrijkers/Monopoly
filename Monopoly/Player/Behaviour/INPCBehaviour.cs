@@ -8,12 +8,18 @@ namespace Monopoly.Player.Behaviour
 {
     public interface INPCBehaviour
     {
-        public bool wantsToRush(NPCPlayer player);
+        public void PayAmount(NPCPlayer player, PlayerObject other, int amount);
 
-        public bool acceptsTransactions(NPCPlayer player);
+        public void ContemplateJail(NPCPlayer player);
 
-        public bool prefersJail(NPCPlayer player);
+        public void DrawChanceCard(NPCPlayer player);
 
-        public bool pullsCard(NPCPlayer player);
+        public void DrawCommunityChestCard(NPCPlayer player);
+
+        public void PayBank(NPCPlayer player, int amount);
+
+        public void BuyCurrentTile(NPCPlayer player);
+
+        public void ThrowDice(NPCPlayer player, int alreadyThrown);
     }
 }

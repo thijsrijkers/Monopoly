@@ -30,7 +30,7 @@ namespace Monopoly.Command.Commands
 
             foreach (var player in players)
             {
-                executer.GiveMoneyTo(board, fullamount / players.Count(), player);
+                executer.GiveMoneyTo(fullamount / players.Count(), player);
             }
             board.TransactionToAllPlayers(executer, amount);
         }

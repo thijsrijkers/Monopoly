@@ -8,24 +8,47 @@ namespace Monopoly.Player.Behaviour
 {
     public class ShyBehaviour : INPCBehaviour
     {
-        public bool wantsToRush(NPCPlayer player)
+        private Board board;
+        public ShyBehaviour(Board board)
         {
-            return false;
+            this.board = board;
         }
 
-        public bool acceptsTransactions(NPCPlayer player)
+        public void PayAmount(NPCPlayer player, PlayerObject other, int amount)
         {
-            return new Random().Next(0, 2) == 0; // 50/50 chance to accept
+            Console.WriteLine($"{player.GetName()} weigerde te betalen aan {other.GetName()}.");
         }
 
-        public bool prefersJail(NPCPlayer player)
+        public void ContemplateJail(NPCPlayer player)
         {
-            return false;
         }
 
-        public bool pullsCard(NPCPlayer player) 
+        public void DrawChanceCard(NPCPlayer player)
         {
-            return false;
+            var card = board.DrawChanceCard();
+            card.ExecuteCommand(board, player);
+        }
+
+        public void DrawCommunityChestCard(NPCPlayer player)
+        {
+            var card = board.DrawCommunityChestCard();
+            card.ExecuteCommand(board, player);
+        }
+
+        public void PayBank(NPCPlayer player, int amount)
+        {
+            Console.WriteLine($"{player.GetName()} weigerde te betalen aan de bank.");
+        }
+
+        public void BuyCurrentTile(NPCPlayer player)
+        {
+        }
+
+        public void ThrowDice(NPCPlayer player, int alreadyThrown)
+        {
+            ContemplateJail(player);
+
+            player.throwDice(board, alreadyThrown);
         }
     }
 }

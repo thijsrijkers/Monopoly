@@ -33,18 +33,18 @@ namespace Monopoly.Player
         /// </summary>
         /// <param name="board">The board</param>
         /// <param name="value">The amount of money needed from you</param>
-        public virtual void GiveMoneyToBank(Board board, int value)
+        public virtual void GiveMoneyToBank(int value) => giveMoneyToBank(value);
+        internal void giveMoneyToBank(int value)
         {
             if (this.money >= value)
             {
                 this.money -= value;
                 return;
             }
-
-            board.RemovePlayer(this);
         }
 
-        public virtual void ReceiveMoney(int value)
+        public virtual void ReceiveMoney(int value) => receiveMoney(value);
+        internal void receiveMoney(int value)
         {
             this.money += value;
         }
@@ -55,7 +55,8 @@ namespace Monopoly.Player
         /// <param name="board">The board</param>
         /// <param name="value">The amount of money needed from you</param>
         /// <param name="otherPlayer">The other player</param>
-        public virtual void GiveMoneyTo(Board board, int value, PlayerObject otherPlayer)
+        public virtual void GiveMoneyTo(int value, PlayerObject otherPlayer) => giveMoneyTo(value, otherPlayer);
+        internal void giveMoneyTo(int value, PlayerObject otherPlayer)
         {
             if (this.money >= value)
             {
@@ -64,7 +65,6 @@ namespace Monopoly.Player
                 return;
             }
             otherPlayer.ReceiveMoney(this.money);
-            board.RemovePlayer(this);
         }
 
         public virtual void ExecuteTile(Board value)
@@ -109,7 +109,17 @@ namespace Monopoly.Player
             return this.money;
         }
 
+        public void SetMoney(int amount)
+        {
+            this.money = amount;
+        }
+
         public virtual void ThrowDice(Board board, int alreadyThrown)
+        {
+            throwDice(board, alreadyThrown);
+        }
+
+        internal void throwDice(Board board, int alreadyThrown)
         {
             if (!jailed)
             {
@@ -162,7 +172,8 @@ namespace Monopoly.Player
             jailed = true;
         }
 
-        public virtual void BuyCurrentTile(Board board)
+        public virtual void BuyCurrentTile(Board board) => buyCurrentTile(board);
+        internal void buyCurrentTile(Board board)
         {
             Buildable position = (Buildable)this.GetPosition();
             int price = position.getPrice();
