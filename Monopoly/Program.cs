@@ -24,7 +24,7 @@ namespace Monopoly
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine("Welcome to command line monopoly. Type 'help' for a command listing.");
+            Console.WriteLine("Welkom bij command line monopoly. Typ 'help' voor een command listing.");
 
             string play = "";
             while (play != "j" && play != "n")
@@ -51,16 +51,16 @@ namespace Monopoly
                     case "help":
                         Console.WriteLine(
                             $"Command help:" +
-                            $"\n    help: shows command help." +
-                            $"\n    quit: quits the program." +
-                            $"\n    throw: Let the player throw his dice when its his turn" +
-                            $"\n    complete: completes game without pauses"
+                            $"\n    help: laat command help zien." +
+                            $"\n    quit: sluit het programma." +
+                            $"\n    throw: laat de speler gooien. Wordt ook uitgevoerd bij een leeg command (enter)." +
+                            $"\n    complete: maakt het spel af zonder pauzes, behalve wanneer player input nodig is."
                             );
                         break;
 
                     case "quit":
                         quit = true;
-                        Console.WriteLine("Shutting down...");
+                        Console.WriteLine("Aan het afsluiten...");
                         break;
 
                     case "throw":
