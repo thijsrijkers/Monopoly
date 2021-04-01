@@ -128,9 +128,14 @@ namespace Monopoly.Player
 
                 //Dice throw
                 int amount = index + diceOne + diceTwo;
-                int result = amount >= board.GetTiles().Count ? amount - board.GetTiles().Count : amount;
+                while(amount >= board.GetTiles().Count) // Imagine, you can magically throw enough to pass start multiple times
+                {
+                    Console.WriteLine($"{GetName()} kwam langs start en kreeg 200 euro.");
+                    money += 200;
+                    amount -= board.GetTiles().Count;
+                }
 
-                SetTile(board.GetTiles()[result]);
+                SetTile(board.GetTiles()[amount]);
 
 
                 if (diceOne != diceTwo)
