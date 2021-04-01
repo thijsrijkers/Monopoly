@@ -16,7 +16,10 @@ namespace Monopoly.Player.Behaviour
 
         public void PayAmount(NPCPlayer player, PlayerObject other, int amount)
         {
-            Console.WriteLine($"{player.GetName()} weigerde te betalen aan {other.GetName()}.");
+            if (new Random().Next(0, 5) == 1)
+                Console.WriteLine($"{player.GetName()} weigerde te betalen aan {other.GetName()}.");
+            else
+                player.giveMoneyTo(amount, other);
         }
 
         public void ContemplateJail(NPCPlayer player)
@@ -37,7 +40,10 @@ namespace Monopoly.Player.Behaviour
 
         public void PayBank(NPCPlayer player, int amount)
         {
-            Console.WriteLine($"{player.GetName()} weigerde te betalen aan de bank.");
+            if (new Random().Next(0, 5) == 1)
+                Console.WriteLine($"{player.GetName()} weigerde te betalen aan de bank.");
+            else
+                player.giveMoneyToBank(amount);
         }
 
         public void BuyCurrentTile(NPCPlayer player)

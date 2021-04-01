@@ -46,17 +46,32 @@ namespace Monopoly.Player.Behaviour
 
         public void DrawChanceCard(NPCPlayer player)
         {
-            Console.WriteLine($"{player.GetName()} weigerde een chance kaart te pakken.");
+            if (new Random().Next(0, 2) == 1)
+                Console.WriteLine($"{player.GetName()} weigerde een chance kaart te pakken.");
+            else
+            {
+                var card = board.DrawChanceCard();
+                card.ExecuteCommand(board, player);
+            }
         }
 
         public void DrawCommunityChestCard(NPCPlayer player)
         {
-            Console.WriteLine($"{player.GetName()} weigerde een community chest kaart te pakken.");
+            if (new Random().Next(0, 2) == 1)
+                Console.WriteLine($"{player.GetName()} weigerde een community chest te pakken.");
+            else
+            {
+                var card = board.DrawCommunityChestCard();
+                card.ExecuteCommand(board, player);
+            }
         }
 
         public void PayBank(NPCPlayer player, int amount)
         {
-            Console.WriteLine($"{player.GetName()} weigerde te betalen aan de bank.");
+            if (new Random().Next(0, 5) == 1)
+                Console.WriteLine($"{player.GetName()} weigerde te betalen aan de bank.");
+            else
+                player.giveMoneyToBank(amount);
         }
 
         public void BuyCurrentTile(NPCPlayer player)
